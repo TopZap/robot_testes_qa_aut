@@ -1,0 +1,394 @@
+*** Settings ***
+
+Library    SeleniumLibrary
+Library    XML
+Resource   ../variables/var.resource
+
+*** Keywords ***
+Abrir o Navegador e Acessar o Sistema
+    Open Browser    ${home.url}    chrome
+    Maximize Browser Window
+    Set Selenium Implicit Wait    3s
+
+Fechar o Navegador
+    Close Browser
+
+Dado que esteja logado
+    Wait Until Element Is Enabled    ${home.username_field}    60
+    Input Text                       ${home.username_field}    ${home.username}
+    Input Text                       ${home.password_field}    ${home.password}
+    Click Button                     ${home.login_button}
+    Wait Until Element Is Enabled    ${home.success_msg}    60
+    ${current_url}=    Get Location
+    Should Contain                   ${current_url}    dashboard
+    # Capture Page Screenshot
+
+Quando estiver logado com usuário teste
+    Wait Until Element Is Enabled    ${home.username_field}    60
+    Input Text                       ${home.username_field}    test@test.com
+    Input Text                       ${home.password_field}    123456
+    Sleep    2
+    Double Click Element             ${home.login_button}
+
+Então ralizo Login com usuário não cadastrado
+    Wait Until Element Is Enabled    ${home.username_field}    60
+    Input Text                       ${home.username_field}    ${home.username_nao_cadastrado}
+    Input Text                       ${home.password_field}    ${home.password}
+    Click Button                     ${home.login_button}
+    Wait Until Element Is Enabled    ${home.error_login}    60
+    Set Focus To Element             ${home.error_login}
+    ${Erro_Login}    Get Text    ${home.error_login}
+    Log To Console    Validar mensagem de erro: ${Erro_Login}
+    # Capture Page Screenshot
+
+ Então realizo login com senha inválida
+    Wait Until Element Is Enabled    ${home.username_field}    60
+    Input Text                       ${home.username_field}    ${home.username}
+    Input Text                       ${home.password_field}    ${home.password_invalido}
+    Click Button                     ${home.login_button}
+    Wait Until Element Is Enabled    ${home.error_login}    60
+    Set Focus To Element             ${home.error_login}
+    ${Erro_Login}    Get Text    ${home.error_login}
+    Log To Console    Validar mensagem de erro: ${Erro_Login}
+    # Capture Page Screenshot
+
+Então realizo Logout com Sucesso
+    Scroll Element Into View         ${home.logout}
+    Wait Until Element Is Visible    ${home.logout}    60
+    Click Button                     ${home.logout}
+    Wait Until Location Is           ${home.expected_url}    60
+    ${current_url}=    Get Location
+    Should Be Equal As Strings       ${current_url}    ${home.expected_url}
+    # Capture Page Screenshot
+
+Então validar usuário em atendimento
+    Wait Until Element Is Visible    ${home.service_button}    60
+    Set Focus To Element             ${home.service_button}
+    Click Button                     ${home.service_button}
+
+    Wait Until Element Is Visible    ${home.service_select}    60
+    Set Focus To Element             ${home.service_select}    
+    Click Button                     ${home.service_select}
+
+    # É necessário ter um usuário presente
+    Wait Until Element Is Visible    ${home.img_contact}    60
+    Set Focus To Element             ${home.img_contact}
+    Click Image                      ${home.img_contact}
+    # Capture Page Screenshot
+
+Então filtrar por filas  
+    Wait Until Element Is Visible    ${home.atendimento_button}    60
+    Set Focus To Element             ${home.atendimento_button}
+    Click Button                     ${home.atendimento_button}
+    # Não funciona sem o sleep
+    Sleep    2
+    Wait Until Element Is Visible    ${home.all_button}    60
+    Set Focus To Element             ${home.all_button}
+    Click Element                    ${home.all_button}
+    
+    Sleep    2
+    Wait Until Element Is Visible    ${home.filas_button}    60
+    Set Focus To Element             ${home.filas_button}
+    Click Element                    ${home.filas_button}
+    # Deverá apresentar apenas uma caixa de "Filas"
+    Sleep    2
+    Wait Until Element Is Visible    ${home.filas_label}    60
+    Set Focus To Element             ${home.filas_label}
+    Element Should Be Visible        ${home.filas_label}
+    # Capture Page Screenshot
+
+Então validar informações do contato no CRM
+    Reload Page
+    Sleep    2
+    Wait Until Element Is Visible    ${home.crm}    60
+    Set Focus To Element             ${home.crm}
+    Click Element                    ${home.crm}
+    
+    Wait Until Element Is Visible    ${home.funil_crm}    60
+    Set Focus To Element             ${home.funil_crm}
+    Click Element                    ${home.funil_crm}
+    # É necessário ter um usuário presente
+    Wait Until Element Is Visible    ${home.img_contato_crm}    60
+    Set Focus To Element             ${home.img_contato_crm}
+    Click Element                    ${home.img_contato_crm}
+    # Validar o campo "Atividades", validando que não está com tela branca
+    Wait Until Element Is Visible    ${home.atividades_crm}    60
+    Set Focus To Element             ${home.atividades_crm}
+    Element Should Be Visible        ${home.atividades_crm}
+     # Validar o campo "Informações", validando que não está com tela branca
+    Wait Until Element Is Visible    ${home.imformacoes_gerais_crm}    60
+    Set Focus To Element             ${home.imformacoes_gerais_crm}
+    Element Should Be Visible        ${home.imformacoes_gerais_crm}
+    # Capture Page Screenshot
+
+Então acessar Relatórios Tempo Médio
+    # Acessar o menu "Relatótios"
+    Wait Until Element Is Visible    ${home.menu_relatorios}    60
+    Set Focus To Element             ${home.menu_relatorios}
+    Click Element                    ${home.menu_relatorios}
+    
+    # Acessar o módulo "Tempo Médio"
+    Wait Until Element Is Visible    ${home.modulo_tempo_medio}    60
+    Set Focus To Element             ${home.modulo_tempo_medio}
+    Click Element                    ${home.modulo_tempo_medio}
+
+    # Validar a coluna "Tempo Médio de Espera por Atendimento"
+    Wait Until Element Is Visible    ${home.coluna_tempo_espera_atendimento}    60
+    Set Focus To Element             ${home.coluna_tempo_espera_atendimento} 
+    
+    # Validar com Screenshot que o formato do tempo está correto
+    Wait Until Element Is Visible    ${home.tempo_medio_horas}    60
+    Set Focus To Element             ${home.tempo_medio_horas}
+    # Capture Page Screenshot
+
+Edição de mensagens em atendimentos
+    # Deverá ter uma mensagem com o texto "Testar edição"
+    Wait Until Element Is Visible    ${home.testar_edição}    60
+    Set Focus To Element             ${home.testar_edição}
+    Click Element                    ${home.testar_edição}
+
+    Wait Until Element Is Visible    ${home.menu_editar_msgs}    60
+    Set Focus To Element             ${home.menu_editar_msgs}
+    Click Element                    ${home.menu_editar_msgs}
+
+    Wait Until Element Is Visible    ${home.editar_mensagens}    60
+    Set Focus To Element             ${home.editar_mensagens}
+    Click Element                    ${home.editar_mensagens}
+
+    Wait Until Element Is Visible    ${home.inserir_msg_edição}    60
+    Set Focus To Element             ${home.inserir_msg_edição}
+    Clear Element Text               ${home.inserir_msg_edição}
+
+    Input Text                       ${home.inserir_msg_edição}    Mensagem Editada    
+
+Quando acessar o menu Dashboard
+    # Validar acesso ao Dashboard
+    Wait Until Element Is Visible    ${home.dashboard}    60
+    Set Focus To Element             ${home.dashboard}
+    Click Element                    ${home.dashboard}
+
+    Wait Until Element Is Enabled    ${home.success_msg}    60
+    ${current_url}=    Get Location
+    Should Contain                   ${current_url}    dashboard 
+
+E acessar o menu atendimentos
+    # Validar acesso ao Atendimentos
+    Wait Until Element Is Visible    ${home.atendimento_button}    60
+    Set Focus To Element             ${home.atendimento_button}
+    Click Element                    ${home.atendimento_button}
+    ${current_url}=    Get Location
+    Should Contain                   ${current_url}    tickets
+
+ Quando acessar o menu atendimento simples
+    # Validar acesso à Atendimento Simples
+    Wait Until Element Is Visible    ${home.atendimento_simples}    60
+    Set Focus To Element             ${home.atendimento_simples}
+    Click Element                    ${home.atendimento_simples}
+    ${current_url}=    Get Location
+    Should Contain                   ${current_url}    simple-tickets
+
+Quando acessar o menu contatos
+    # Validar acesso à Contatos
+    Wait Until Element Is Visible    ${home.contatos_menu}    60
+    Set Focus To Element             ${home.contatos_menu}
+    Click Element                    ${home.contatos_menu}
+    ${current_url}=    Get Location
+    Should Contain                   ${current_url}    contacts
+
+    Wait Until Element Is Visible    ${home.contatos_page}    60
+    Set Focus To Element             ${home.contatos_page}
+    Element Should Be Visible        ${home.contatos_page}
+
+Quando acessar o menu campanhas
+    # Validar acesso à Campanhas
+    Wait Until Element Is Visible    ${home.menu_campanhas}    60
+    Set Focus To Element             ${home.menu_campanhas}
+    Click Element                    ${home.menu_campanhas}
+    ${current_url}=    Get Location
+    Should Contain                   ${current_url}    schedule
+
+    Wait Until Element Is Visible    ${home.page_campanhas}    60
+    Set Focus To Element             ${home.page_campanhas}
+    Element Should Be Visible        ${home.page_campanhas}
+
+Quando acessar o menu relatórios
+    # Validar acesso à Relatórios
+    Wait Until Element Is Visible    ${home.menu_relatorios}    60
+    Set Focus To Element             ${home.menu_relatorios}
+    Click Element                    ${home.menu_relatorios}
+    ${current_url}=    Get Location
+    Should Contain                   ${current_url}    reports
+
+    Wait Until Element Is Visible    ${home.page_relatorios}    60
+    Set Focus To Element             ${home.page_relatorios}
+    Element Should Be Visible        ${home.page_relatorios}
+    
+Quando acessar o menu Google Agenda
+    # Validar acesso à Google Agenda
+    Wait Until Element Is Visible    ${home.menu_google_agenda}    60
+    Set Focus To Element             ${home.menu_google_agenda}
+    Click Element                    ${home.menu_google_agenda}
+    ${current_url}=    Get Location
+    Should Contain                   ${current_url}    google_agenda
+
+    Wait Until Element Is Visible    ${home.page_google_agenda}    60
+    Set Focus To Element             ${home.page_google_agenda}
+    Element Should Be Visible        ${home.page_google_agenda}
+
+Quando acessar o menu chat shop
+    # Validar acesso à Chat Shop
+    Wait Until Element Is Visible    ${home.menu_chat_shop}    60
+    Set Focus To Element             ${home.menu_chat_shop}
+    Click Element                    ${home.menu_chat_shop}
+    ${current_url}=    Get Location
+    Should Contain                   ${current_url}    shop_pedidos
+
+    Wait Until Element Is Visible    ${home.page_chat_shop}    60
+    Set Focus To Element             ${home.page_chat_shop}
+    Element Should Be Visible        ${home.page_chat_shop}
+
+Quando acessar o menu podidos
+    # Validar acesso à Pedidos
+    Wait Until Element Is Visible    ${home.menu_pedidos}    60
+    Set Focus To Element             ${home.menu_pedidos}
+    Click Element                    ${home.menu_pedidos}
+    ${current_url}=    Get Location
+    Should Contain                   ${current_url}    chat_shop_ordered
+
+    Wait Until Element Is Visible    ${home.page_pedidos}    60
+    Set Focus To Element             ${home.page_pedidos}
+    Element Should Be Visible        ${home.page_pedidos}
+
+Quando acessar o menu administração
+    # Validar acesso à Administração
+    Wait Until Element Is Visible    ${home.menu_administração}    60
+    Set Focus To Element             ${home.menu_administração}
+    Click Element                    ${home.menu_administração}
+    ${current_url}=    Get Location
+    Should Contain                   ${current_url}    administration
+
+    Wait Until Element Is Visible    ${home.page_administração}    60
+    Set Focus To Element             ${home.page_administração}
+    Element Should Be Visible        ${home.page_administração}
+
+Quando acessar o menu configuracões
+    # Validar acesso à Configurações
+    Wait Until Element Is Visible    ${home.menu_configuração}    60
+    Set Focus To Element             ${home.menu_configuração}
+    Click Element                    ${home.menu_configuração}  
+
+    Wait Until Element Is Visible    ${home.page_configurações}    60
+    Set Focus To Element             ${home.page_configurações}
+    Element Should Be Visible        ${home.page_configurações}
+
+E acesso IA histórico de pagamento
+    # Validar acesso ao menu Inteligência Artificial
+    Wait Until Element Is Visible    ${home.ia_menu}    60
+    Set Focus To Element             ${home.ia_menu}
+    Click Element                    ${home.ia_menu} 
+    
+    Wait Until Element Is Visible    ${home.ia_menu}    60
+    Set Focus To Element             ${home.ia_menu}
+    Element Should Be Visible        ${home.ia_menu} 
+
+    # Acessar o módulo histórico de pagamentos
+    Wait Until Element Is Visible    ${home.ia_historico_pg}    60
+    Set Focus To Element             ${home.ia_historico_pg}
+    Click Element                    ${home.ia_historico_pg} 
+    
+    # Retorna a url atual do navegador
+    ${url_atual}=    Get Location
+    Should Be Equal As Strings    ${url_atual}    https://qa.greenchat.com.br/administration/ia?graph=day&menu=payments
+
+E acesso IA histórico de uso
+        # Validar acesso ao menu Inteligência Artificial
+    Wait Until Element Is Visible    ${home.ia_menu}    60
+    Set Focus To Element             ${home.ia_menu}
+    Click Element                    ${home.ia_menu} 
+    
+    Wait Until Element Is Visible    ${home.ia_menu}    60
+    Set Focus To Element             ${home.ia_menu}
+    Element Should Be Visible        ${home.ia_menu} 
+
+    # Acessar o módulo histórico de uso
+    Wait Until Element Is Visible    ${home.ia_historico_uso}    60
+    Set Focus To Element             ${home.ia_historico_uso}
+    Click Element                    ${home.ia_historico_uso} 
+    
+    # Retorna a url atual do navegador
+    ${url_atual}=    Get Location
+    Should Be Equal As Strings    ${url_atual}    https://qa.greenchat.com.br/administration/ia?graph=day&menu=usages
+
+E acesso IA relatorios de erros
+    # Validar acesso ao menu Inteligência Artificial
+    Wait Until Element Is Visible    ${home.ia_menu}    60
+    Set Focus To Element             ${home.ia_menu}
+    Click Element                    ${home.ia_menu} 
+    
+    Wait Until Element Is Visible    ${home.ia_menu}    60
+    Set Focus To Element             ${home.ia_menu}
+    Element Should Be Visible        ${home.ia_menu} 
+
+    # Acessar o módulo relatórios de errros
+    Wait Until Element Is Visible    ${home.ia_relatorios_erros}    60
+    Set Focus To Element             ${home.ia_relatorios_erros}
+    Click Element                    ${home.ia_relatorios_erros} 
+    
+    # Retorna a url atual do navegador
+    ${url_atual}=    Get Location
+    Should Be Equal As Strings    ${url_atual}    https://qa.greenchat.com.br/administration/ia?graph=day&menu=errors
+    
+E acesso IA configurações
+    # Validar acesso ao menu Inteligência Artificial
+    Wait Until Element Is Visible    ${home.ia_menu}    60
+    Set Focus To Element             ${home.ia_menu}
+    Click Element                    ${home.ia_menu} 
+    
+    Wait Until Element Is Visible    ${home.ia_menu}    60
+    Set Focus To Element             ${home.ia_menu}
+    Element Should Be Visible        ${home.ia_menu} 
+
+    # Acessar o módulo configurações
+    Wait Until Element Is Visible    ${home.ia_configuracoes}    60
+    Set Focus To Element             ${home.ia_configuracoes}
+    Click Element                    ${home.ia_configuracoes} 
+    
+    # Retorna a url atual do navegador
+    ${url_atual}=    Get Location
+    Should Be Equal As Strings    ${url_atual}    https://qa.greenchat.com.br/administration/ia?graph=day&menu=configs 
+    
+E acessar o módulo grupo de permissões
+    # Acessar o módulo Grupo de Permissões
+    Wait Until Element Is Visible    ${home.grupo_permissoes}    60
+    Set Focus To Element             ${home.grupo_permissoes}
+    Click Element                    ${home.grupo_permissoes} 
+    
+    # Validar o usuário "teste douglas qa"
+    Wait Until Element Is Visible    ${home.grupo_teste_douglas_qa}    60
+    Set Focus To Element             ${home.grupo_teste_douglas_qa}
+    Log To Console    → Elemento visível com sucesso!
+
+Então selecionar o modal contatos
+    # Clicar em páginas e selecionar o modal "Contatos"
+    Wait Until Element Is Visible    ${home.paginas_permissoes}    60
+    Set Focus To Element             ${home.paginas_permissoes}
+    Click Element                    ${home.paginas_permissoes} 
+    
+    # Clica caso o modal não esteja selecionado 
+    Wait Until Element Is Visible    ${home.modal_contatos}    60
+    Set Focus To Element             ${home.modal_contatos}
+    Double Click Element             ${home.modal_contatos}  
+
+    # Clicar em salvar
+    Wait Until Element Is Visible    ${home.btn_salvar_permissoes}    60
+    Set Focus To Element             ${home.btn_salvar_permissoes}
+    Click Element                    ${home.btn_salvar_permissoes}
+
+Então visualizar apenas o modal contatos 
+    # Validar que há apenas o menu "Contatos"
+    Wait Until Element Is Visible    ${home.contatos_menu}    60
+    Set Focus To Element             ${home.contatos_menu}
+    Element Should Be Visible        ${home.contatos_menu} 
+    
+    # Validar que há apenas o modal "Contatos"
+    Capture Page Screenshot
