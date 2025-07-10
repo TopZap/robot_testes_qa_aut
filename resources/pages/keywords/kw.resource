@@ -273,6 +273,7 @@ Quando acessar o menu administração
 
 Quando acessar o menu configuracões
     # Validar acesso à Configurações
+    Scroll Element Into View         ${home.menu_configuração}
     Wait Until Element Is Visible    ${home.menu_configuração}    60
     Set Focus To Element             ${home.menu_configuração}
     Click Element                    ${home.menu_configuração}  
@@ -280,6 +281,62 @@ Quando acessar o menu configuracões
     Wait Until Element Is Visible    ${home.page_configurações}    60
     Set Focus To Element             ${home.page_configurações}
     Element Should Be Visible        ${home.page_configurações}
+
+E acessar a aba contexto do menu configurações
+    Wait Until Element Is Visible    ${home.contexto_config}    60
+    Set Focus To Element             ${home.contexto_config}
+    Click Element                    ${home.contexto_config}  
+
+Então lançar contexto Personalizado
+    # Clicar em Personalizado
+    Wait Until Element Is Visible    ${home.personalisado_contexto}    60
+    Set Focus To Element             ${home.personalisado_contexto}
+    Click Element                    ${home.personalisado_contexto} 
+
+    # Clicar em Adicionar Contexto
+    Wait Until Element Is Visible    ${home.add_contexto}    60
+    Set Focus To Element             ${home.add_contexto}
+    Click Element                    ${home.add_contexto}
+    
+    # Inserir o nome
+    Wait Until Element Is Visible    ${home.input_nome_contexto}    60
+    Set Focus To Element             ${home.input_nome_contexto}
+    Input Text                       ${home.input_nome_contexto}    teste_qa_teste
+    
+    Sleep    2
+    ${contexto_personalizado}     Get Value    ${home.input_nome_contexto}
+    Set Global Variable    ${contexto_personalizado}    ${contexto_personalizado}
+    Log To Console    Nome inserido: ${contexto_personalizado}     
+
+    # Selecionar o tipo "Contato"
+    Wait Until Element Is Visible    xpath=//div[contains(@class, 'react-select__control')]    60
+    Set Focus To Element             xpath=//div[contains(@class, 'react-select__control')]
+    Click Element                    xpath=//div[contains(@class, 'react-select__control')]
+
+    Sleep    2
+    Execute JavaScript    document.evaluate("//div[contains(@class, 'react-select__option') and text()='Contato']", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click()
+     
+    # Salvar contexto personalizado
+    Sleep    2
+    Wait Until Element Is Visible    ${home.btn_salvar_contexto}    60
+    Set Focus To Element             ${home.btn_salvar_contexto}
+    Click Element                    ${home.btn_salvar_contexto}
+    
+    Sleep    2
+    # Comparar variáveis e validar nome criado
+     ${contexto_personalizado_criado}     Get Text  ${home.variavel_nome_contexto_person}
+    Set Global Variable    ${contexto_personalizado_criado}    ${contexto_personalizado_criado}
+    Log To Console    Nome criado: ${contexto_personalizado_criado} 
+    
+    Should Be Equal    ${contexto_personalizado}    ${contexto_personalizado_criado}    
+    # Capture Page Screenshot
+
+    # Clicar no botão excluir
+    Wait Until Element Is Visible    ${home.btn_excluir_contexto_person}    60
+    Set Focus To Element             ${home.btn_excluir_contexto_person}
+    Sleep    2
+    Click Element                    ${home.btn_excluir_contexto_person}
+    Sleep    2
 
 E acesso IA histórico de pagamento
     # Validar acesso ao menu Inteligência Artificial

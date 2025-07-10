@@ -66,3 +66,12 @@ Library    SeleniumLibrary
 ...    paginas_permissoes=(//button[contains(@aria-label,'button-icon')])[4]
 ...    modal_contatos=(//span[contains(@class,'cbx')])[4]
 ...    btn_salvar_permissoes=//p[normalize-space()='Salvar']
+...    contexto_config=//span[normalize-space()='Contextos']
+...    personalisado_contexto=//div[@class='sc-VLMBG bKcuIw']//p[contains(text(),'Personalizado')]
+...    add_contexto=//div[@class='sc-jKCWkB bxhcbI']//button[contains(text(),'Adicionar contexto')]
+...    input_nome_contexto=//input[contains(@name,'name')] 
+...    select_contato_contexto=(//div[@class='react-select__single-value css-1dimb5e-singleValue'])
+...    select_tipo_contexto=//div[@class='react-select__indicator react-select__dropdown-indicator css-1xc3v61-indicatorContainer']//*[name()='svg']
+...    btn_salvar_contexto=//div[@data-tooltip-id='Salvar']//button[@aria-label='button-icon']
+...    variavel_nome_contexto_person=//td[@data-label='Nome']
+...    btn_excluir_contexto_person=//div[contains(@data-tooltip-id,'Excluir')]//button[contains(@aria-label,'button-icon')]

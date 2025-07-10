@@ -18,7 +18,7 @@ TC002 - Login com usuário não cadastrado
     [Tags]    login_sem_sucesso    usuario_não_cadastrado
     Então ralizo Login com usuário não cadastrado
 
-TC004 - Login com usuário cadastrado e senha inválida
+TC003 - Login com usuário cadastrado e senha inválida
     [Documentation]    Testa o login com usuário cadastrado mas com senha inválida
     ...                deverá ser visualizado a mensagem de erro 
     [Tags]    login_sem_sucesso    logout
