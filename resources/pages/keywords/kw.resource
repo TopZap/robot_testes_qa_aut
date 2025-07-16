@@ -448,4 +448,14 @@ Então visualizar apenas o modal contatos
     Element Should Be Visible        ${home.contatos_menu} 
     
     # Validar que há apenas o modal "Contatos"
-    Capture Page Screenshot
+    # Capture Page Screenshot
+
+E validar carrossel
+    # Validar que há o carrossel de informações
+    Wait Until Element Is Visible    ${home.btn_carrossel_1}    60
+    Set Focus To Element             ${home.btn_carrossel_1}
+    Element Should Be Visible        ${home.btn_carrossel_1} 
+    
+    Wait Until Element Is Visible    ${home.btn_carrossel_2}    60
+    Set Focus To Element             ${home.btn_carrossel_2}
+    Element Should Be Visible        ${home.btn_carrossel_2} 
