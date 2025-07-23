@@ -21,7 +21,6 @@ Dado que esteja logado
     Wait Until Element Is Enabled    ${home.success_msg}    60
     ${current_url}=    Get Location
     Should Contain                   ${current_url}    dashboard
-    # Capture Page Screenshot
 
 Quando estiver logado com usuário teste
     Wait Until Element Is Enabled    ${home.username_field}    60
@@ -194,7 +193,7 @@ Quando acessar o menu contatos
     Click Element                    ${home.contatos_menu}
     ${current_url}=    Get Location
     Should Contain                   ${current_url}    contacts
-
+    
     Wait Until Element Is Visible    ${home.contatos_page}    60
     Set Focus To Element             ${home.contatos_page}
     Element Should Be Visible        ${home.contatos_page}
@@ -225,6 +224,7 @@ Quando acessar o menu relatórios
     
 Quando acessar o menu Google Agenda
     # Validar acesso à Google Agenda
+    Scroll Element Into View         ${home.menu_google_agenda}
     Wait Until Element Is Visible    ${home.menu_google_agenda}    60
     Set Focus To Element             ${home.menu_google_agenda}
     Click Element                    ${home.menu_google_agenda}
@@ -237,6 +237,7 @@ Quando acessar o menu Google Agenda
 
 Quando acessar o menu chat shop
     # Validar acesso à Chat Shop
+    Scroll Element Into View         ${home.menu_chat_shop}
     Wait Until Element Is Visible    ${home.menu_chat_shop}    60
     Set Focus To Element             ${home.menu_chat_shop}
     Click Element                    ${home.menu_chat_shop}
@@ -247,8 +248,9 @@ Quando acessar o menu chat shop
     Set Focus To Element             ${home.page_chat_shop}
     Element Should Be Visible        ${home.page_chat_shop}
 
-Quando acessar o menu podidos
+Quando acessar o menu pedidos
     # Validar acesso à Pedidos
+    Scroll Element Into View         ${home.menu_pedidos}
     Wait Until Element Is Visible    ${home.menu_pedidos}    60
     Set Focus To Element             ${home.menu_pedidos}
     Click Element                    ${home.menu_pedidos}
@@ -261,6 +263,9 @@ Quando acessar o menu podidos
 
 Quando acessar o menu administração
     # Validar acesso à Administração
+    Reload Page
+    Sleep    3
+    Scroll Element Into View         ${home.menu_administração}
     Wait Until Element Is Visible    ${home.menu_administração}    60
     Set Focus To Element             ${home.menu_administração}
     Click Element                    ${home.menu_administração}
@@ -458,4 +463,4 @@ E validar carrossel
     
     Wait Until Element Is Visible    ${home.btn_carrossel_2}    60
     Set Focus To Element             ${home.btn_carrossel_2}
-    Element Should Be Visible        ${home.btn_carrossel_2} 
+    Element Should Be Visible        ${home.btn_carrossel_2}   

@@ -3,7 +3,7 @@ Resource    ../resources/pages/keywords/kw.resource
 Resource    ../resources/pages/variables/var.resource
 
 Test Setup        Abrir o Navegador e Acessar o Sistema
-Suite Teardown    Fechar o Navegador
+Test Teardown     Fechar o Navegador
 
 *** Test Cases ***
 
@@ -47,7 +47,7 @@ TC007 - Validar acessso à Pedidos
     [Documentation]    Testa o acesso ao menu "Pedidos"
     [Tags]    menu    pedidos
     Dado que esteja logado
-    Quando acessar o menu podidos
+    Quando acessar o menu pedidos
 
 TC008 - Validar acesso à Administração
     [Documentation]    Testa o acesso ao menu "Administração"
