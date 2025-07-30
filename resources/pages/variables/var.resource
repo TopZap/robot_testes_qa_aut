@@ -4,6 +4,7 @@ Library    SeleniumLibrary
 *** Variables ***
 &{home}    
 ...    url=https://qa.greenchat.com.br/
+...    user_name_admin=superadmin2@topzap.app
 ...    username_nao_cadastrado=qa@testes.com
 ...    username=datg2702@hotmail.com
 ...    password=123456
@@ -77,3 +78,5 @@ Library    SeleniumLibrary
 ...    btn_excluir_contexto_person=//div[contains(@data-tooltip-id,'Excluir')]//button[contains(@aria-label,'button-icon')]
 ...    btn_carrossel_1=//button[contains(text(),'◀')]
 ...    btn_carrossel_2=//button[contains(text(),'◀')]
+...    menu_planos_admin=//button[@data-testid='side-bar-option-Planos']
+...    btn_add_plano=//p[normalize-space()='Adicionar Plano']

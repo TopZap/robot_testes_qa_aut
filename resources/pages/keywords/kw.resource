@@ -22,6 +22,12 @@ Dado que esteja logado
     ${current_url}=    Get Location
     Should Contain                   ${current_url}    dashboard
 
+Dado que esteja logado Admin
+    Wait Until Element Is Enabled    ${home.username_field}    60
+    Input Text                       ${home.username_field}    ${home.user_name_admin}
+    Input Text                       ${home.password_field}    ${home.password}
+    Click Button                     ${home.login_button}
+
 Quando estiver logado com usuário teste
     Wait Until Element Is Enabled    ${home.username_field}    60
     Input Text                       ${home.username_field}    test@test.com
@@ -464,3 +470,20 @@ E validar carrossel
     Wait Until Element Is Visible    ${home.btn_carrossel_2}    60
     Set Focus To Element             ${home.btn_carrossel_2}
     Element Should Be Visible        ${home.btn_carrossel_2}   
+
+Quando acessar o menu planos
+    # Validar o acesso ao menu plano
+    Wait Until Element Is Visible    ${home.menu_planos_admin}    60
+    Set Focus To Element             ${home.menu_planos_admin}
+    Click Element                    ${home.menu_planos_admin}
+
+E clicar em adicionar plano
+    # validar o acesso ao botão adicionar plano
+    Wait Until Element Is Visible    ${home.btn_add_plano}    60
+    Set Focus To Element             ${home.btn_add_plano}
+    Click Element                    ${home.btn_add_plano}
+
+# Então criar plano por IA e validar
+
+
+    

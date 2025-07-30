@@ -22,4 +22,4 @@ TC003 - Login com usuário cadastrado e senha inválida
     [Documentation]    Testa o login com usuário cadastrado mas com senha inválida
     ...                deverá ser visualizado a mensagem de erro 
     [Tags]    login_sem_sucesso    logout
-     Então realizo login com senha inválida
+    Então realizo login com senha inválida
