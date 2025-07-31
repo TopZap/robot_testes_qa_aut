@@ -45,4 +45,5 @@ TC005 - Validar criação de plano IA
     [Tags]    inteligencia_artificial    adicionar_plano  
     Dado que esteja logado Admin
     Quando acessar o menu planos
-    # Então criar plano por IA e validar 
+    E clicar em adicionar plano
+    Então criar plano por IA e validar 

@@ -8,6 +8,7 @@ Library    SeleniumLibrary
 ...    username_nao_cadastrado=qa@testes.com
 ...    username=datg2702@hotmail.com
 ...    password=123456
+...    pass_adm=310725
 ...    password_invalido=testandosenhainvalida
 ...    username_field=//input[@id="email"]
 ...    password_field=//input[@id="password"]
@@ -80,3 +81,5 @@ Library    SeleniumLibrary
 ...    btn_carrossel_2=//button[contains(text(),'◀')]
 ...    menu_planos_admin=//button[@data-testid='side-bar-option-Planos']
 ...    btn_add_plano=//p[normalize-space()='Adicionar Plano']
+...    imput_plano_ia=//input[@placeholder='Digite o nome do plano']
+...    btn_config_plano_ia=//button[normalize-space()='Configuração do Plano']

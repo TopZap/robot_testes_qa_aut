@@ -25,7 +25,7 @@ Dado que esteja logado
 Dado que esteja logado Admin
     Wait Until Element Is Enabled    ${home.username_field}    60
     Input Text                       ${home.username_field}    ${home.user_name_admin}
-    Input Text                       ${home.password_field}    ${home.password}
+    Input Text                       ${home.password_field}    ${home.pass_adm}
     Click Button                     ${home.login_button}
 
 Quando estiver logado com usuário teste
@@ -483,7 +483,13 @@ E clicar em adicionar plano
     Set Focus To Element             ${home.btn_add_plano}
     Click Element                    ${home.btn_add_plano}
 
-# Então criar plano por IA e validar
-
-
+Então criar plano por IA e validar
+    # Acessar Configuração do Plano
+    Wait Until Element Is Visible    ${home.btn_config_plano_ia}    60
+    Set Focus To Element             ${home.btn_config_plano_ia}
+    Click Element                    ${home.btn_config_plano_ia}
     
+    # Inserir dados
+    Wait Until Element Is Visible    ${home.imput_plano_ia}    60
+    Set Focus To Element             ${home.imput_plano_ia}
+    Input Text                       ${home.imput_plano_ia}    plano IA Automatizado
