@@ -473,23 +473,109 @@ E validar carrossel
 
 Quando acessar o menu planos
     # Validar o acesso ao menu plano
+    Sleep    2
     Wait Until Element Is Visible    ${home.menu_planos_admin}    60
     Set Focus To Element             ${home.menu_planos_admin}
     Click Element                    ${home.menu_planos_admin}
 
 E clicar em adicionar plano
     # validar o acesso ao botão adicionar plano
+    Sleep    2
     Wait Until Element Is Visible    ${home.btn_add_plano}    60
     Set Focus To Element             ${home.btn_add_plano}
     Click Element                    ${home.btn_add_plano}
 
-Então criar plano por IA e validar
+Então criar e validar plano por IA 
     # Acessar Configuração do Plano
     Wait Until Element Is Visible    ${home.btn_config_plano_ia}    60
     Set Focus To Element             ${home.btn_config_plano_ia}
     Click Element                    ${home.btn_config_plano_ia}
     
-    # Inserir dados
+    # Inserir dados | Nome do plano
     Wait Until Element Is Visible    ${home.imput_plano_ia}    60
     Set Focus To Element             ${home.imput_plano_ia}
-    Input Text                       ${home.imput_plano_ia}    plano IA Automatizado
+    Input Text                       ${home.imput_plano_ia}    Plano IA Automatizado
+
+    # Guardar o plano criado em variável para validação final
+    ${plano_IA_criado_aut}    Get Value   ${home.imput_plano_ia}
+    Log To Console    Plano IA criado: ${plano_IA_criado_aut}  
+    
+    # Selecionar moeda do plano IA
+    Wait Until Element Is Visible    ${home.select_moeda_ia}    60
+    Set Focus To Element             ${home.select_moeda_ia}
+    Click Element                    ${home.select_moeda_ia}    
+
+    Wait Until Element Is Visible    ${home.real_brasileiro_moeda_ia}    60
+    Click Element                    ${home.real_brasileiro_moeda_ia}
+
+    # Inserir preço do plano
+    Wait Until Element Is Visible    ${home.preco_plano_ia}    60
+    Set Focus To Element             ${home.preco_plano_ia}
+    Input Text                       ${home.preco_plano_ia}    1000
+
+    # Inserir dias de testes
+    Wait Until Element Is Visible    ${home.dias_testes_ia}    60
+    Set Focus To Element             ${home.dias_testes_ia}
+    Input Text                       ${home.dias_testes_ia}    1
+
+    # Inserir quantidade de usuários
+    Wait Until Element Is Visible    ${home.qt_usuarios_ia}    60
+    Set Focus To Element             ${home.qt_usuarios_ia}
+    Input Text                       ${home.qt_usuarios_ia}    1
+    
+    # Inserir tipo de pagamento
+    Wait Until Element Is Visible    ${home.qt_conexoes_ia}    60
+    Set Focus To Element             ${home.qt_conexoes_ia}
+    Input Text                       ${home.qt_conexoes_ia}    1
+
+    # Inserir quantidade de conexões
+    Wait Until Element Is Visible    ${home.tipo_pagamento_ia}    60
+    Set Focus To Element             ${home.tipo_pagamento_ia}
+    Click Element                    ${home.tipo_pagamento_ia}
+
+    Wait Until Element Is Visible    ${home.select_cartao_credito_ia}    60
+    Click Element                    ${home.select_cartao_credito_ia}
+
+    # Clicar em "Módulo do Plano" e selecionar IA
+    Wait Until Element Is Visible    ${home.btn_modulo_plano}    60
+    Set Focus To Element             ${home.btn_modulo_plano}
+    Click Element                    ${home.btn_modulo_plano}
+
+    Wait Until Element Is Visible    ${home.select_ia_modulos}    60
+    Set Focus To Element             ${home.select_ia_modulos}
+    Click Element                    ${home.select_ia_modulos} 
+
+    # Inserir quantidade de tokens
+    Wait Until Element Is Visible    ${home.qt_tokens_modulo_ia}    60
+    Set Focus To Element             ${home.qt_tokens_modulo_ia}
+    Input Text                       ${home.qt_tokens_modulo_ia}    10000    
+
+    # Salvar plano crido por IA
+    Wait Until Element Is Visible    ${home.btn_salvar_ia}    60
+    Scroll Element Into View         ${home.btn_salvar_ia}
+    Set Focus To Element             ${home.btn_salvar_ia}
+    Click Element                    ${home.btn_salvar_ia}
+    
+    # Validar plano IA criado, comparando variáveis
+    Sleep    3
+    Wait Until Element Is Visible    ${home.variavel_plano_ia_automatizado}    60
+    Set Focus To Element             ${home.variavel_plano_ia_automatizado}
+    ${validar_plano_criado}    Get Text   ${home.variavel_plano_ia_automatizado}
+    Log To Console    Plano IA criado: ${validar_plano_criado}
+    Should Be Equal    ${validar_plano_criado}    Plano IA Automatizado
+
+    # Excluir plano
+    Wait Until Element Is Visible    ${home.excluir_plano}    60
+    Scroll Element Into View         ${home.excluir_plano}
+    Set Focus To Element             ${home.excluir_plano}
+    Click Element                    ${home.excluir_plano}
+
+    Wait Until Element Is Visible    ${home.btn_confirmar}    60
+    Set Focus To Element             ${home.btn_confirmar}
+    Click Element                    ${home.btn_confirmar}
+    
+    # Validar plano deletado
+    Sleep    2
+    Wait Until Element Is Visible    ${home.plano_deletado}    60
+    Set Focus To Element             ${home.plano_deletado}
+    Element Should Be Visible        ${home.plano_deletado}

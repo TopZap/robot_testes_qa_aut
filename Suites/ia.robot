@@ -39,11 +39,11 @@ TC004 - Validar o módulo Inteligência Artifical_Configurações
     Quando acessar o menu administração
     E acesso IA configurações
 
-TC005 - Validar criação de plano IA
+TC005 - Validar criação de plano por IA
     [Documentation]    Testa o acesso com Super Admin > Planos > Adicionar Plano > IA
-    ...                Validar que o plano foi criado
+    ...                Validar que o plano foi criado > Deletar plano
     [Tags]    inteligencia_artificial    adicionar_plano  
     Dado que esteja logado Admin
     Quando acessar o menu planos
     E clicar em adicionar plano
-    Então criar plano por IA e validar 
+    Então criar e validar plano por IA
