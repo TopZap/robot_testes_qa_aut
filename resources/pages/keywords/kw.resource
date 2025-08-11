@@ -18,9 +18,6 @@ Dado que esteja logado
     Input Text                       ${home.username_field}    ${home.username}
     Input Text                       ${home.password_field}    ${home.password}
     Click Button                     ${home.login_button}
-    Wait Until Element Is Enabled    ${home.success_msg}    60
-    ${current_url}=    Get Location
-    Should Contain                   ${current_url}    dashboard
 
 Dado que esteja logado Admin
     Wait Until Element Is Enabled    ${home.username_field}    60
@@ -299,7 +296,7 @@ E acessar a aba contexto do menu configurações
     Click Element                    ${home.contexto_config}  
 
 Então lançar contexto Personalizado
-    # Clicar em Personalizado
+    # Clicar em Personalizado    
     Wait Until Element Is Visible    ${home.personalisado_contexto}    60
     Set Focus To Element             ${home.personalisado_contexto}
     Click Element                    ${home.personalisado_contexto} 

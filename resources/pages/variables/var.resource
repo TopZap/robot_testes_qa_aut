@@ -69,8 +69,8 @@ Library    SeleniumLibrary
 ...    modal_contatos=(//span[contains(@class,'cbx')])[4]
 ...    btn_salvar_permissoes=//p[normalize-space()='Salvar']
 ...    contexto_config=//span[normalize-space()='Contextos']
-...    personalisado_contexto=//div[@class='sc-VLMBG bKcuIw']//p[contains(text(),'Personalizado')]
-...    add_contexto=//div[@class='sc-jKCWkB bxhcbI']//button[contains(text(),'Adicionar contexto')]
+...    personalisado_contexto=//p[normalize-space()='Personalizado']
+...    add_contexto=//button[normalize-space()='Adicionar contexto']
 ...    input_nome_contexto=//input[contains(@name,'name')] 
 ...    select_contato_contexto=(//div[@class='react-select__single-value css-1dimb5e-singleValue'])
 ...    select_tipo_contexto=//div[@class='react-select__indicator react-select__dropdown-indicator css-1xc3v61-indicatorContainer']//*[name()='svg']
