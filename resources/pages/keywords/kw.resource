@@ -15,14 +15,28 @@ Fechar o Navegador
 
 Dado que esteja logado
     Wait Until Element Is Enabled    ${home.username_field}    60
+    Set Focus To Element             ${home.username_field}
     Input Text                       ${home.username_field}    ${home.username}
+
+    Wait Until Element Is Enabled    ${home.password_field}    60
+    Set Focus To Element             ${home.password_field}
     Input Text                       ${home.password_field}    ${home.password}
+
+    Wait Until Element Is Enabled    ${home.login_button}    60
+    Set Focus To Element             ${home.login_button}
     Click Button                     ${home.login_button}
 
 Dado que esteja logado Admin
     Wait Until Element Is Enabled    ${home.username_field}    60
+    Set Focus To Element             ${home.username_field}
     Input Text                       ${home.username_field}    ${home.user_name_admin}
+
+    Wait Until Element Is Enabled    ${home.password_field}    60
+    Set Focus To Element             ${home.password_field}
     Input Text                       ${home.password_field}    ${home.pass_adm}
+
+    Wait Until Element Is Enabled    ${home.login_button}    60
+    Set Focus To Element             ${home.login_button}
     Click Button                     ${home.login_button}
 
 Quando estiver logado com usuário teste
@@ -441,7 +455,7 @@ Então selecionar o modal contatos
     Set Focus To Element             ${home.paginas_permissoes}
     Click Element                    ${home.paginas_permissoes} 
     
-    # Clica caso o modal não esteja selecionado 
+    # Clicar caso o modal não esteja selecionado 
     Wait Until Element Is Visible    ${home.modal_contatos}    60
     Set Focus To Element             ${home.modal_contatos}
     Double Click Element             ${home.modal_contatos}  
@@ -456,9 +470,6 @@ Então visualizar apenas o modal contatos
     Wait Until Element Is Visible    ${home.contatos_menu}    60
     Set Focus To Element             ${home.contatos_menu}
     Element Should Be Visible        ${home.contatos_menu} 
-    
-    # Validar que há apenas o modal "Contatos"
-    # Capture Page Screenshot
 
 E validar carrossel
     # Validar que há o carrossel de informações
