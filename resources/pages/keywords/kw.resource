@@ -296,8 +296,10 @@ E acessar a aba contexto do menu configurações
     Click Element                    ${home.contexto_config}  
 
 Então lançar contexto Personalizado
-    # Clicar em Personalizado    
+    # Clicar em Personalizado
+    Sleep    2    
     Wait Until Element Is Visible    ${home.personalisado_contexto}    60
+    Scroll Element Into View         ${home.personalisado_contexto} 
     Set Focus To Element             ${home.personalisado_contexto}
     Click Element                    ${home.personalisado_contexto} 
 
