@@ -21,10 +21,10 @@ Dado que esteja logado
     Wait Until Element Is Enabled    ${home.password_field}    60
     Set Focus To Element             ${home.password_field}
     Input Text                       ${home.password_field}    ${home.password}
-
+    
     Wait Until Element Is Enabled    ${home.login_button}    60
     Set Focus To Element             ${home.login_button}
-    Click Button                     ${home.login_button}
+    Click Element                    ${home.login_button}
 
 Dado que esteja logado Admin
     Wait Until Element Is Enabled    ${home.username_field}    60
@@ -55,7 +55,6 @@ Então ralizo Login com usuário não cadastrado
     Set Focus To Element             ${home.error_login}
     ${Erro_Login}    Get Text    ${home.error_login}
     Log To Console    Validar mensagem de erro: ${Erro_Login}
-    # Capture Page Screenshot
 
  Então realizo login com senha inválida
     Wait Until Element Is Enabled    ${home.username_field}    60
@@ -66,7 +65,6 @@ Então ralizo Login com usuário não cadastrado
     Set Focus To Element             ${home.error_login}
     ${Erro_Login}    Get Text    ${home.error_login}
     Log To Console    Validar mensagem de erro: ${Erro_Login}
-    # Capture Page Screenshot
 
 Então realizo Logout com Sucesso
     Scroll Element Into View         ${home.logout}
@@ -75,7 +73,6 @@ Então realizo Logout com Sucesso
     Wait Until Location Is           ${home.expected_url}    60
     ${current_url}=    Get Location
     Should Be Equal As Strings       ${current_url}    ${home.expected_url}
-    # Capture Page Screenshot
 
 Então validar usuário em atendimento
     Wait Until Element Is Visible    ${home.service_button}    60
@@ -90,7 +87,6 @@ Então validar usuário em atendimento
     Wait Until Element Is Visible    ${home.img_contact}    60
     Set Focus To Element             ${home.img_contact}
     Click Image                      ${home.img_contact}
-    # Capture Page Screenshot
 
 Então filtrar por filas  
     Wait Until Element Is Visible    ${home.atendimento_button}    60
@@ -111,11 +107,10 @@ Então filtrar por filas
     Wait Until Element Is Visible    ${home.filas_label}    60
     Set Focus To Element             ${home.filas_label}
     Element Should Be Visible        ${home.filas_label}
-    # Capture Page Screenshot
 
 Então validar informações do contato no CRM
-    Reload Page
     Sleep    2
+    Reload Page
     Wait Until Element Is Visible    ${home.crm}    60
     Set Focus To Element             ${home.crm}
     Click Element                    ${home.crm}
@@ -135,7 +130,6 @@ Então validar informações do contato no CRM
     Wait Until Element Is Visible    ${home.imformacoes_gerais_crm}    60
     Set Focus To Element             ${home.imformacoes_gerais_crm}
     Element Should Be Visible        ${home.imformacoes_gerais_crm}
-    # Capture Page Screenshot
 
 Então acessar Relatórios Tempo Médio
     # Acessar o menu "Relatótios"
@@ -155,7 +149,6 @@ Então acessar Relatórios Tempo Médio
     # Validar com Screenshot que o formato do tempo está correto
     Wait Until Element Is Visible    ${home.tempo_medio_horas}    60
     Set Focus To Element             ${home.tempo_medio_horas}
-    # Capture Page Screenshot
 
 Edição de mensagens em atendimentos
     # Deverá ter uma mensagem com o texto "Testar edição"
@@ -280,7 +273,6 @@ Quando acessar o menu pedidos
 
 Quando acessar o menu administração
     # Validar acesso à Administração
-    Reload Page
     Sleep    3
     Scroll Element Into View         ${home.menu_administração}
     Wait Until Element Is Visible    ${home.menu_administração}    60
@@ -353,7 +345,6 @@ Então lançar contexto Personalizado
     Log To Console    Nome criado: ${contexto_personalizado_criado} 
     
     Should Be Equal    ${contexto_personalizado}    ${contexto_personalizado_criado}    
-    # Capture Page Screenshot
 
     # Clicar no botão excluir
     Wait Until Element Is Visible    ${home.btn_excluir_contexto_person}    60
@@ -382,7 +373,7 @@ E acesso IA histórico de pagamento
     Should Be Equal As Strings    ${url_atual}    https://qa.greenchat.com.br/administration/ia?graph=day&menu=payments
 
 E acesso IA histórico de uso
-        # Validar acesso ao menu Inteligência Artificial
+    # Validar acesso ao menu Inteligência Artificial
     Wait Until Element Is Visible    ${home.ia_menu}    60
     Set Focus To Element             ${home.ia_menu}
     Click Element                    ${home.ia_menu} 

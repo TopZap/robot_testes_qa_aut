@@ -12,7 +12,7 @@ Library    SeleniumLibrary
 ...    password_invalido=testandosenhainvalida
 ...    username_field=//input[@id="email"]
 ...    password_field=//input[@id="password"]
-...    login_button=//button[@type="submit"]
+...    login_button=//button[@aria-label='button-default']
 ...    success_msg=//button[contains(text(),"Atendimento")]
 ...    logout=//button[@aria-label='logout']
 ...    expected_url=https://qa.greenchat.com.br/
@@ -47,7 +47,7 @@ Library    SeleniumLibrary
 ...    page_campanhas=(//p[contains(text(),'Campanhas')])[2]
 ...    menu_relatorios=//section[@class='info']//p[contains(text(),'Relatórios')]
 ...    page_relatorios=(//p[contains(text(),'Relatórios')])[2]  
-...    menu_google_agenda=//p[normalize-space()='Google Agenda']
+...    menu_google_agenda=(//p[contains(text(),'Google Agenda')])[1]
 ...    page_google_agenda=(//p[contains(text(),'Google Agenda')])[2]
 ...    menu_chat_shop=//section[@class='info']//p[contains(text(),'Chat Shop')]
 ...    page_chat_shop=(//p[contains(text(),'Chat Shop')])[2]

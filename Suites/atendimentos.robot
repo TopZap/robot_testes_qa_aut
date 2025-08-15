@@ -6,7 +6,6 @@ Test Setup        Abrir o Navegador e Acessar o Sistema
 Test Teardown     Fechar o Navegador
 
 *** Test Cases ***
-
 TC001 - Validar acesso a atendimentos
     [Documentation]    Testa que ao acessar o menu atendimentos > filtros > filas
     ...    deverá constar apenas uma caixa de seleção
