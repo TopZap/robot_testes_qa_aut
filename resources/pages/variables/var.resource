@@ -103,3 +103,4 @@ Library    SeleniumLibrary
 ...    btn_agentes_ia=//button[@type='button']//p[contains(text(),'Agentes de IA')]
 ...    page_agentes=//p[normalize-space()='Agentes']
 ...    btn_add_agente=//p[normalize-space()='Adicionar Agente']
+...    input_nome_agente_ia=//input[@id=':r2:']

@@ -595,7 +595,17 @@ Quando acessar Agentes de IA
     Log To Console    Page: ${page_agentes}
     Should Be Equal    ${page_agentes}    Agentes
 
+Então criar agentes de ia
     # Adicionar Agente
     Wait Until Element Is Visible    ${home.btn_add_agente}    120
+    Scroll Element Into View         ${home.btn_add_agente}
     Set Focus To Element             ${home.btn_add_agente}
     Click Element                    ${home.btn_add_agente}
+    
+    # Inserir nome do agente e guardar em variável
+    Wait Until Element Is Visible    ${home.input_nome_agente_ia}    120
+    Set Focus To Element             ${home.input_nome_agente_ia}
+    Input Text        ${home.input_nome_agente_ia}    QA Agente IA 
+    ${nome_agente}    Get Value    ${home.input_nome_agente_ia}
+    Set Global Variable    ${nome_agente}    ${nome_agente}
+    Log To Console    Page: ${nome_agente}
