@@ -100,3 +100,6 @@ Library    SeleniumLibrary
 ...    excluir_plano=//tbody//div[2]//button[1]//*[name()='svg']
 ...    btn_confirmar=//p[normalize-space()='Confirmar']
 ...    plano_deletado=//p[normalize-space()='Plano Deletado!']
+...    btn_agentes_ia=//button[@type='button']//p[contains(text(),'Agentes de IA')]
+...    page_agentes=//p[normalize-space()='Agentes']
+...    btn_add_agente=//p[normalize-space()='Adicionar Agente']

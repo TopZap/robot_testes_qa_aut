@@ -580,3 +580,22 @@ Então criar e validar plano por IA
     Wait Until Element Is Visible    ${home.plano_deletado}    60
     Set Focus To Element             ${home.plano_deletado}
     Element Should Be Visible        ${home.plano_deletado}
+
+Quando acessar Agentes de IA
+    # Validar acesso ao menu Agentes de IA
+    Wait Until Element Is Visible    ${home.btn_agentes_ia}    120
+    Set Focus To Element             ${home.btn_agentes_ia}
+    Click Element                    ${home.btn_agentes_ia} 
+    
+    # Validar Home Page "Agentes"
+    Wait Until Element Is Visible    ${home.page_agentes}    120
+    Set Focus To Element             ${home.page_agentes}
+    Element Should Be Visible        ${home.page_agentes} 
+    ${page_agentes}    Get Text    ${home.page_agentes}
+    Log To Console    Page: ${page_agentes}
+    Should Be Equal    ${page_agentes}    Agentes
+
+    # Adicionar Agente
+    Wait Until Element Is Visible    ${home.btn_add_agente}    120
+    Set Focus To Element             ${home.btn_add_agente}
+    Click Element                    ${home.btn_add_agente}
