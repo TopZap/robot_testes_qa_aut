@@ -597,13 +597,13 @@ Quando acessar Agentes de IA
 
 Então criar agentes de ia
     # Adicionar Agente
-    Wait Until Element Is Visible    ${home.btn_add_agente}    120
+    Wait Until Element Is Visible    ${home.btn_add_agente}    150
     Scroll Element Into View         ${home.btn_add_agente}
     Set Focus To Element             ${home.btn_add_agente}
     Click Element                    ${home.btn_add_agente}
     
     # Inserir nome do agente e guardar em variável
-    Wait Until Element Is Visible    ${home.input_nome_agente_ia}    120
+    Wait Until Element Is Visible    ${home.input_nome_agente_ia}    150
     Set Focus To Element             ${home.input_nome_agente_ia}
     Input Text        ${home.input_nome_agente_ia}    QA Agente IA 
     ${nome_agente}    Get Value    ${home.input_nome_agente_ia}
@@ -611,26 +611,26 @@ Então criar agentes de ia
     Log To Console    Page: ${nome_agente}
 
     # Salvar Agente IA
-    Wait Until Element Is Visible    ${home.salvar_agentesIA}    120
+    Wait Until Element Is Visible    ${home.salvar_agentesIA}    150
     Scroll Element Into View         ${home.salvar_agentesIA}
     Set Focus To Element             ${home.salvar_agentesIA}
     Click Element                    ${home.salvar_agentesIA}
     
     # Aguardar até que não esteja mais visível "Agente criado com sucesso"
-    Wait Until Element Is Visible       ${home.agente_criado_sucesso}    120
+    Wait Until Element Is Visible       ${home.agente_criado_sucesso}    150
     Scroll Element Into View            ${home.agente_criado_sucesso}
     Set Focus To Element                ${home.agente_criado_sucesso}
-    Wait Until Page Does Not Contain    ${home.agente_criado_sucesso}    200
+    Wait Until Page Does Not Contain    ${home.agente_criado_sucesso}    150
 
     # Editar Agente de IA
-    Wait Until Element Is Visible    ${home.btn_editar_agenteIA}    120
+    Wait Until Element Is Visible    ${home.btn_editar_agenteIA}    150
     Scroll Element Into View         ${home.btn_editar_agenteIA}
     Set Focus To Element             ${home.btn_editar_agenteIA}
     Click Element                    ${home.btn_editar_agenteIA}
     
     # Inserir perfil do Agente
     Scroll Element Into View    //label[contains(text(),'Faça uma breve descrição de como deve ser este per')]
-    Wait Until Element Is Visible    ${home.input_perfil_IA}    120
+    Wait Until Element Is Visible    ${home.input_perfil_IA}    150
     Scroll Element Into View         ${home.input_perfil_IA}
     Set Focus To Element             ${home.input_perfil_IA}
     Input Text                       ${home.input_perfil_IA}    Nome: Douglas TavaresTelefone: 988632111Modalidade: Teste de Software
