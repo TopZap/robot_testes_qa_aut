@@ -608,4 +608,5 @@ Então criar agentes de ia
     Input Text        ${home.input_nome_agente_ia}    QA Agente IA 
     ${nome_agente}    Get Value    ${home.input_nome_agente_ia}
     Set Global Variable    ${nome_agente}    ${nome_agente}
-    Log To Console    Page: ${nome_agente}
+    Log To Console    Pagexxxxxxx: ${nome_agente}
+    
