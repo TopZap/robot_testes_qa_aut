@@ -608,5 +608,39 @@ Então criar agentes de ia
     Input Text        ${home.input_nome_agente_ia}    QA Agente IA 
     ${nome_agente}    Get Value    ${home.input_nome_agente_ia}
     Set Global Variable    ${nome_agente}    ${nome_agente}
-    Log To Console    Pagexxxxxxx: ${nome_agente}
+    Log To Console    Page: ${nome_agente}
+
+    # Salvar Agente IA
+    Wait Until Element Is Visible    ${home.salvar_agentesIA}    120
+    Scroll Element Into View         ${home.salvar_agentesIA}
+    Set Focus To Element             ${home.salvar_agentesIA}
+    Click Element                    ${home.salvar_agentesIA}
+    
+    # Aguardar até que não esteja mais visível "Agente criado com sucesso"
+    Wait Until Element Is Visible       ${home.agente_criado_sucesso}    120
+    Scroll Element Into View            ${home.agente_criado_sucesso}
+    Set Focus To Element                ${home.agente_criado_sucesso}
+    Wait Until Page Does Not Contain    ${home.agente_criado_sucesso}    200
+
+    # Editar Agente de IA
+    Wait Until Element Is Visible    ${home.btn_editar_agenteIA}    120
+    Scroll Element Into View         ${home.btn_editar_agenteIA}
+    Set Focus To Element             ${home.btn_editar_agenteIA}
+    Click Element                    ${home.btn_editar_agenteIA}
+    
+    # Inserir perfil do Agente
+    Scroll Element Into View    //label[contains(text(),'Faça uma breve descrição de como deve ser este per')]
+    Wait Until Element Is Visible    ${home.input_perfil_IA}    120
+    Scroll Element Into View         ${home.input_perfil_IA}
+    Set Focus To Element             ${home.input_perfil_IA}
+    Input Text                       ${home.input_perfil_IA}    Nome: Douglas TavaresTelefone: 988632111Modalidade: Teste de Software
+
+
+    
+    
+
+    
+
+    
+    
     

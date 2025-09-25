@@ -104,3 +104,7 @@ Library    SeleniumLibrary
 ...    page_agentes=//p[normalize-space()='Agentes']
 ...    btn_add_agente=//p[normalize-space()='Adicionar Agente']
 ...    input_nome_agente_ia=//input[@id=':r2:']
+...    btn_editar_agenteIA=//tbody/tr[2]/td[2]/div[1]/div[2]/button[1]//*[name()='svg']
+...    salvar_agentesIA=//button[@type='submit']//p[contains(text(),'Salvar')]
+...    agente_criado_sucesso=//p[normalize-space()='Agente criado com sucesso!']
+...    input_perfil_IA=//textarea[@id=':r1v:']
