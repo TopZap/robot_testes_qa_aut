@@ -14,7 +14,11 @@ TC001 - Criar agentes de IA
     Dado que esteja logado
     Quando acessar o menu administração
     Quando acessar Agentes de IA
-    Então criar agentes de ia
+    Quando criar agentes de ia
+    E editar agentes de IA
+    E editar base de conhecimento | agentes de IA
+    Então testar o Agente de IA 
+
 
 TC002 - Validar criação de plano por IA
     [Documentation]    Testa o acesso com Super Admin > Planos > Adicionar Plano > IA

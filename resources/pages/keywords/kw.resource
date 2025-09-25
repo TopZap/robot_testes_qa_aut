@@ -595,7 +595,7 @@ Quando acessar Agentes de IA
     Log To Console    Page: ${page_agentes}
     Should Be Equal    ${page_agentes}    Agentes
 
-Então criar agentes de ia
+Quando criar agentes de ia
     # Adicionar Agente
     Wait Until Element Is Visible    ${home.btn_add_agente}    150
     Scroll Element Into View         ${home.btn_add_agente}
@@ -627,21 +627,85 @@ Então criar agentes de ia
     Scroll Element Into View         ${home.btn_editar_agenteIA}
     Set Focus To Element             ${home.btn_editar_agenteIA}
     Click Element                    ${home.btn_editar_agenteIA}
+
+E editar agentes de IA
     
-    # Inserir perfil do Agente
+    # Inserir perfil do Agente e regras de negócios
     Scroll Element Into View    //label[contains(text(),'Faça uma breve descrição de como deve ser este per')]
     Wait Until Element Is Visible    ${home.input_perfil_IA}    150
     Scroll Element Into View         ${home.input_perfil_IA}
     Set Focus To Element             ${home.input_perfil_IA}
     Input Text                       ${home.input_perfil_IA}    ${home.perfil_agente}
-    
 
+    Wait Until Element Is Visible    ${home.regras_negocios_ia}    150
+    Scroll Element Into View         ${home.regras_negocios_ia}
+    Set Focus To Element             ${home.regras_negocios_ia}
+    Input Text                       ${home.regras_negocios_ia}    ${home.input_regras_negocios}
 
+    # Clicar em próximo
+    Wait Until Element Is Visible    ${home.btn_proximo}    150
+    Scroll Element Into View         ${home.btn_proximo}
+    Set Focus To Element             ${home.btn_proximo}
+    Click Element                    ${home.btn_proximo}
     
-    
+    # Aguardar até que não esteja mais visível "Atualização de agente"
+    Wait Until Element Is Visible       ${home.msg_atualizando_ag_ia}    150
+    Scroll Element Into View            ${home.msg_atualizando_ag_ia}
+    Set Focus To Element                ${home.msg_atualizando_ag_ia}
+    Wait Until Page Does Not Contain    ${home.msg_atualizando_ag_ia}    150
 
-    
+E editar base de conhecimento | agentes de IA    
+    # Inserir base de conhecimento do Agente IA e Salvar
+    Scroll Element Into View         ${home.base_conhecimento_page}
+    Wait Until Element Is Visible    ${home.input_base_conhecimento}    150
+    Scroll Element Into View         ${home.input_base_conhecimento}
+    Set Focus To Element             ${home.input_base_conhecimento}
+    Input Text                       ${home.input_base_conhecimento}    ${home.text_conhecimento_agente}
 
+    Wait Until Element Is Visible    ${home.salvar_agentesIA}    150
+    Scroll Element Into View         ${home.salvar_agentesIA}
+    Set Focus To Element             ${home.salvar_agentesIA}
+    Click Element                    ${home.salvar_agentesIA}
+
+    # Aguardar até que não esteja mais visível "Atualização de agente"
+    Wait Until Element Is Visible       ${home.msg_atualizando_ag_ia}    150
+    Scroll Element Into View            ${home.msg_atualizando_ag_ia}
+    Set Focus To Element                ${home.msg_atualizando_ag_ia}
+    Wait Until Page Does Not Contain    ${home.msg_atualizando_ag_ia}    150
+
+    # Clicar em próximo
+    Wait Until Element Is Visible    ${home.btn_proximo_1}    150
+    Scroll Element Into View         ${home.btn_proximo_1}
+    Set Focus To Element             ${home.btn_proximo_1}
+    Click Element                    ${home.btn_proximo_1}
     
-    
-    
+    # # Aguardar até que não esteja mais visível "Atualização de agente"
+    # Wait Until Element Is Visible       ${home.msg_atualizando_ag_ia}    150
+    # Scroll Element Into View            ${home.msg_atualizando_ag_ia}
+    # Set Focus To Element                ${home.msg_atualizando_ag_ia}
+    # Wait Until Page Does Not Contain    ${home.msg_atualizando_ag_ia}    150
+
+    # Clicar em próximo
+    Wait Until Element Is Visible    ${home.btn_proximo_1}    150
+    Scroll Element Into View         ${home.btn_proximo_1}
+    Set Focus To Element             ${home.btn_proximo_1}
+    Click Element                    ${home.btn_proximo_1}
+
+    # Clicar em próximo
+    Wait Until Element Is Visible    ${home.btn_proximo}    150
+    Scroll Element Into View         ${home.btn_proximo}
+    Set Focus To Element             ${home.btn_proximo}
+    Click Element                    ${home.btn_proximo}
+
+    # Aguardar até que não esteja mais visível "Atualização de agente"
+    Wait Until Element Is Visible       ${home.msg_atualizando_ag_ia}    150
+    Scroll Element Into View            ${home.msg_atualizando_ag_ia}
+    Set Focus To Element                ${home.msg_atualizando_ag_ia}
+    Wait Until Page Does Not Contain    ${home.msg_atualizando_ag_ia}    150
+
+Então testar o Agente de IA 
+    # Clicar em testar
+    Wait Until Element Is Visible    ${home.btn_testar}    150
+    Scroll Element Into View         ${home.btn_testar}
+    Set Focus To Element             ${home.btn_testar}
+    Click Element                    ${home.btn_testar}
