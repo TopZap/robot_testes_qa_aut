@@ -633,7 +633,8 @@ Então criar agentes de ia
     Wait Until Element Is Visible    ${home.input_perfil_IA}    150
     Scroll Element Into View         ${home.input_perfil_IA}
     Set Focus To Element             ${home.input_perfil_IA}
-    Input Text                       ${home.input_perfil_IA}    Nome: Douglas TavaresTelefone: 988632111Modalidade: Teste de Software
+    Input Text                       ${home.input_perfil_IA}    ${home.perfil_agente}
+    
 
 
     

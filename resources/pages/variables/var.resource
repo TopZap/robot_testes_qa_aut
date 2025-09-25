@@ -107,4 +107,5 @@ Library    SeleniumLibrary
 ...    btn_editar_agenteIA=//tbody/tr[2]/td[2]/div[1]/div[2]/button[1]//*[name()='svg']
 ...    salvar_agentesIA=//button[@type='submit']//p[contains(text(),'Salvar')]
 ...    agente_criado_sucesso=//p[normalize-space()='Agente criado com sucesso!']
-...    input_perfil_IA=//textarea[@id=':r1v:']
+...    input_perfil_IA=//textarea[@name='prompt']
+...    perfil_agente=Nome: Douglas Tavares\nTelefone: 98863-2111\nModalidade: Teste de Software
