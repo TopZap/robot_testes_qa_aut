@@ -104,8 +104,14 @@ Library    SeleniumLibrary
 ...    page_agentes=//p[normalize-space()='Agentes']
 ...    btn_add_agente=//p[normalize-space()='Adicionar Agente']
 ...    input_nome_agente_ia=//input[@id=':r2:']
-...    btn_editar_agenteIA=//tbody/tr[2]/td[2]/div[1]/div[2]/button[1]//*[name()='svg']
 ...    salvar_agentesIA=//button[@type='submit']//p[contains(text(),'Salvar')]
 ...    agente_criado_sucesso=//p[normalize-space()='Agente criado com sucesso!']
 ...    input_perfil_IA=//textarea[@name='prompt']
 ...    perfil_agente=Nome: Douglas Tavares\nTelefone: 98863-2111\nModalidade: Teste de Software
+...    regras_negocios_ia=//textarea[@name='rules']
+...    input_regras_negocios=Nome: Douglas Tavares\nTelefone: 98863-2111\nModalidade: Teste de Software
+...    btn_proximo=//p[normalize-space()='Próximo']
+...    msg_atualizando_ag_ia=(//span[normalize-space()='Atualização de agente'])
+...    input_base_conhecimento=//textarea[@name='text']
+...    base_conhecimento_page=(//strong[normalize-space()='Base de conhecimento'])
+...    text_conhecimento_agente=Nome: Douglas Tavares\nTelefone: 98863-2111\nModalidade: Teste de Software

@@ -2,6 +2,8 @@
 
 Library    SeleniumLibrary
 Library    XML
+Library    String
+Library    random
 Resource   ../variables/var.resource
 
 *** Keywords ***
@@ -602,10 +604,13 @@ Quando criar agentes de ia
     Set Focus To Element             ${home.btn_add_agente}
     Click Element                    ${home.btn_add_agente}
     
-    # Inserir nome do agente e guardar em variável
+    # Inserir nome aleatório do agente e guardar em variável
+    # Será editado o agente conforme cada criação
     Wait Until Element Is Visible    ${home.input_nome_agente_ia}    150
     Set Focus To Element             ${home.input_nome_agente_ia}
-    Input Text        ${home.input_nome_agente_ia}    QA Agente IA 
+    ${numero}    Generate Random String    5    [NUMBERS]
+    ${nome_agente}    Set Variable    QA_Agente_${numero}
+    Input Text    ${home.input_nome_agente_ia}    ${nome_agente}
     ${nome_agente}    Get Value    ${home.input_nome_agente_ia}
     Set Global Variable    ${nome_agente}    ${nome_agente}
     Log To Console    Page: ${nome_agente}
@@ -615,18 +620,29 @@ Quando criar agentes de ia
     Scroll Element Into View         ${home.salvar_agentesIA}
     Set Focus To Element             ${home.salvar_agentesIA}
     Click Element                    ${home.salvar_agentesIA}
-    
+
     # Aguardar até que não esteja mais visível "Agente criado com sucesso"
     Wait Until Element Is Visible       ${home.agente_criado_sucesso}    150
     Scroll Element Into View            ${home.agente_criado_sucesso}
     Set Focus To Element                ${home.agente_criado_sucesso}
     Wait Until Page Does Not Contain    ${home.agente_criado_sucesso}    150
 
-    # Editar Agente de IA
-    Wait Until Element Is Visible    ${home.btn_editar_agenteIA}    150
-    Scroll Element Into View         ${home.btn_editar_agenteIA}
-    Set Focus To Element             ${home.btn_editar_agenteIA}
-    Click Element                    ${home.btn_editar_agenteIA}
+    # Agora clicar no botão Editar do agente criado
+    # Espera a tabela aparecer
+    Wait Until Element Is Visible    //tbody    150
+
+    # Localiza o td que contém o nome do agente
+    ${nome_agente_tabela}    Get Text    //td[@data-label='Nome' and normalize-space()='${nome_agente}']
+    Log To Console    Nome do agente na tabela: ${nome_agente_tabela}
+
+    # Localiza o botão Editar na mesma linha
+    ${editar_botao}    Set Variable    //td[@data-label='Nome' and normalize-space()='${nome_agente}']/following-sibling::td//button[1]//*[name()='svg']
+
+    # Clicar no botão Editar
+    Wait Until Element Is Visible    ${editar_botao}    150
+    Scroll Element Into View         ${editar_botao}
+    Set Focus To Element             ${editar_botao}
+    Click Element                    ${editar_botao}
 
 E editar agentes de IA
     
@@ -674,22 +690,22 @@ E editar base de conhecimento | agentes de IA
     Wait Until Page Does Not Contain    ${home.msg_atualizando_ag_ia}    150
 
     # Clicar em próximo
-    Wait Until Element Is Visible    ${home.btn_proximo_1}    150
-    Scroll Element Into View         ${home.btn_proximo_1}
-    Set Focus To Element             ${home.btn_proximo_1}
-    Click Element                    ${home.btn_proximo_1}
+    Wait Until Element Is Visible    ${home.btn_proximo}    150
+    Scroll Element Into View         ${home.btn_proximo}
+    Set Focus To Element             ${home.btn_proximo}
+    Click Element                    ${home.btn_proximo}
     
-    # # Aguardar até que não esteja mais visível "Atualização de agente"
-    # Wait Until Element Is Visible       ${home.msg_atualizando_ag_ia}    150
-    # Scroll Element Into View            ${home.msg_atualizando_ag_ia}
-    # Set Focus To Element                ${home.msg_atualizando_ag_ia}
-    # Wait Until Page Does Not Contain    ${home.msg_atualizando_ag_ia}    150
+    # Aguardar até que não esteja mais visível "Atualização de agente"
+    Wait Until Element Is Visible       ${home.msg_atualizando_ag_ia}    150
+    Scroll Element Into View            ${home.msg_atualizando_ag_ia}
+    Set Focus To Element                ${home.msg_atualizando_ag_ia}
+    Wait Until Page Does Not Contain    ${home.msg_atualizando_ag_ia}    150
 
     # Clicar em próximo
-    Wait Until Element Is Visible    ${home.btn_proximo_1}    150
-    Scroll Element Into View         ${home.btn_proximo_1}
-    Set Focus To Element             ${home.btn_proximo_1}
-    Click Element                    ${home.btn_proximo_1}
+    Wait Until Element Is Visible    ${home.btn_proximo}    150
+    Scroll Element Into View         ${home.btn_proximo}
+    Set Focus To Element             ${home.btn_proximo}
+    Click Element                    ${home.btn_proximo}
 
     # Clicar em próximo
     Wait Until Element Is Visible    ${home.btn_proximo}    150
