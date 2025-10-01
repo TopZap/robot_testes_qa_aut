@@ -3,6 +3,7 @@ Resource    ../resources/pages/keywords/kw.resource
 Resource    ../resources/pages/variables/var.resource
 
 Test Setup        Abrir o Navegador e Acessar o Sistema
+
 Test Teardown     Fechar o Navegador
 
 *** Test Cases ***

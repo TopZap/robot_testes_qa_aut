@@ -647,6 +647,7 @@ Quando criar agentes de ia
 E editar agentes de IA
     
     # Inserir perfil do Agente e regras de negócios
+    Sleep    1
     Scroll Element Into View    //label[contains(text(),'Faça uma breve descrição de como deve ser este per')]
     Wait Until Element Is Visible    ${home.input_perfil_IA}    150
     Scroll Element Into View         ${home.input_perfil_IA}
@@ -719,9 +720,103 @@ E editar base de conhecimento | agentes de IA
     Set Focus To Element                ${home.msg_atualizando_ag_ia}
     Wait Until Page Does Not Contain    ${home.msg_atualizando_ag_ia}    150
 
-Então testar o Agente de IA 
-    # Clicar em testar
-    Wait Until Element Is Visible    ${home.btn_testar}    150
-    Scroll Element Into View         ${home.btn_testar}
-    Set Focus To Element             ${home.btn_testar}
-    Click Element                    ${home.btn_testar}
+Então testar o Agente de IA
+    # Inserir mensagem para testar Agente de IA
+    Sleep    1
+    Wait Until Element Is Visible    ${home.input_msg_teste_ia}    150
+    Execute Javascript    document.evaluate("${home.input_msg_teste_ia}", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.value = '${home.perguntar_nome}';
+    Press Key    ${home.input_msg_teste_ia}    ENTER
+
+    # Clicar em enviar
+    Sleep    1
+    Wait Until Element Is Visible    ${home.btn_enviar_msg}    150
+    Scroll Element Into View         ${home.btn_enviar_msg}
+    Set Focus To Element             ${home.btn_enviar_msg}
+    Click Element                    ${home.btn_enviar_msg}
+
+    # Aguardar carregar teste do agente de IA
+    Wait Until Element Is Visible        ${home.loading_testar_ia}    150
+    Scroll Element Into View             ${home.loading_testar_ia}
+    Set Focus To Element                 ${home.loading_testar_ia}
+    Wait Until Element Is Not Visible    ${home.loading_testar_ia}    150
+    Run Keyword And Ignore Error    Element Should Not Be Visible        ${home.loading_testar_ia}
+    
+    # Validar que a resposta contém o nome "Douglas Tavares"
+    Sleep    1
+    Wait Until Element Is Visible    ${home.resposta_nome}    150
+    Scroll Element Into View         ${home.resposta_nome}   
+    Set Focus To Element             ${home.resposta_nome}
+    ${resposta}    Get Text    ${home.resposta_nome}
+    Log To Console    >>> RESPOSTA DO AGENTE: ${resposta}
+    Should Match Regexp    ${resposta}    .*Douglas Tavares.*
+    
+    ### Validar Pergunta sobre o telefone ###
+    # Inserir mensagem para testar Agente de IA
+    # Sleep    1
+    # Wait Until Element Is Visible    ${home.input_msg_teste_ia}    150
+    # Execute Javascript    document.evaluate("${home.input_msg_teste_ia}", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.value = '${home.perguntar_tel}';
+    # Press Key    ${home.input_msg_teste_ia}    ENTER
+    # Press Key    ${home.input_msg_teste_ia}    ENTER
+    # Press Key    ${home.input_msg_teste_ia}    ENTER
+
+    # Sleep    1
+    # Wait Until Element Is Visible    ${home.input_msg_teste_ia}    150
+    # Scroll Element Into View         ${home.input_msg_teste_ia}    
+    # Set Focus To Element             ${home.input_msg_teste_ia}
+    # Input Text                       ${home.input_msg_teste_ia}    ${home.perguntar_tel}
+
+    # # Clicar em enviar
+    # Sleep    1
+    # Wait Until Element Is Visible    ${home.btn_enviar_msg}    150
+    # Scroll Element Into View         ${home.btn_enviar_msg}
+    # Set Focus To Element             ${home.btn_enviar_msg}
+    # Click Element                    ${home.btn_enviar_msg}
+
+    # # Aguardar carregar teste do agente de IA
+    # Sleep    1
+    # Wait Until Element Is Visible        ${home.loading_testar_ia}    150
+    # Scroll Element Into View             ${home.loading_testar_ia}
+    # Set Focus To Element                 ${home.loading_testar_ia}
+    # Wait Until Element Is Not Visible    ${home.loading_testar_ia}    150
+    # Run Keyword And Ignore Error    Element Should Not Be Visible        ${home.loading_testar_ia}
+
+    # # Validar que a resposta contém o telefone "988632111"
+    # Sleep    1
+    # Wait Until Element Is Visible    ${home.resposta_tel}    150
+    # Scroll Element Into View         ${home.resposta_tel}    
+    # Set Focus To Element             ${home.resposta_tel}
+    # ${resposta}    Get Text    ${home.resposta_tel}
+    # Log To Console    >>> RESPOSTA DO AGENTE: ${resposta}
+    # Should Match Regexp    ${resposta}    .*98863-2111.*
+    
+    # # ### Validar Pergunta sobre a modalidade ###
+    # # # Inserir mensagem para testar Agente de IA
+    # # Sleep    1
+    # # Wait Until Element Is Visible    ${home.input_msg_teste_ia}    150
+    # # Scroll Element Into View         ${home.input_msg_teste_ia}    
+    # # Set Focus To Element             ${home.input_msg_teste_ia}
+    # # Input Text                       ${home.input_msg_teste_ia}    ${home.perguntar_modalidade}    
+
+    # # # Clicar em enviar
+    # # Sleep    1
+    # # Wait Until Element Is Visible    ${home.btn_enviar_msg}    150
+    # # Scroll Element Into View         ${home.btn_enviar_msg}
+    # # Set Focus To Element             ${home.btn_enviar_msg}
+    # # Click Element                    ${home.btn_enviar_msg}
+
+    # # # Aguardar carregar teste do agente de IA
+    # # Sleep    1
+    # # Wait Until Element Is Visible        ${home.loading_testar_ia}    150
+    # # Scroll Element Into View             ${home.loading_testar_ia}
+    # # Set Focus To Element                 ${home.loading_testar_ia}
+    # # Wait Until Element Is Not Visible    ${home.loading_testar_ia}    150
+    # # Run Keyword And Ignore Error    Element Should Not Be Visible        ${home.loading_testar_ia}
+
+    # # # Validar que a resposta contém o telefone "Teste de Software"
+    # # Sleep    1
+    # # Wait Until Element Is Visible    ${home.resposta_modalidade}    150
+    # # Scroll Element Into View         ${home.resposta_modalidade}    
+    # # Set Focus To Element             ${home.resposta_modalidade}
+    # # ${resposta}    Get Text    ${home.resposta_modalidade}
+    # # Log To Console    >>> RESPOSTA DO AGENTE: ${resposta}
+    # # Should Match Regexp    ${resposta}    .*Teste de Software.*

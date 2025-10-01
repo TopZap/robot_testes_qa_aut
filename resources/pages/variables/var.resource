@@ -115,3 +115,14 @@ Library    SeleniumLibrary
 ...    input_base_conhecimento=//textarea[@name='text']
 ...    base_conhecimento_page=(//strong[normalize-space()='Base de conhecimento'])
 ...    text_conhecimento_agente=Nome: Douglas Tavares\nTelefone: 98863-2111\nModalidade: Teste de Software
+...    btn_testar=//button[@type='button']//p[contains(text(),'Testar')]
+...    loading_testar_ia=//div[@class='loading']
+...    msg_iniciar_teste_agente_ia=(//p[normalize-space()='Digite uma mensagem para iniciar o teste.'])
+...    input_msg_teste_ia=//textarea[@name='message']
+...    perguntar_nome=Qual seu nome ?
+...    btn_enviar_msg=//*[name()='path' and contains(@d,'M15.9638 0')]
+...    perguntar_tel=Qual o telefone ?
+...    perguntar_modalidade=Qual a modalidade ?
+...    resposta_nome=//p[contains(text(),'Meu nome é Douglas Tavares. Como posso ajudar você')]
+...    resposta_tel=//p[contains(text(),'O telefone para contato é 98863-2111. Como posso a')]
+...    resposta_modalidade=//p[contains(text(),'A modalidade é Teste de Software. Em que posso te ')]
