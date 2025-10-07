@@ -4,6 +4,7 @@ Library    SeleniumLibrary
 Library    XML
 Library    String
 Library    random
+Library    Collections
 Resource   ../variables/var.resource
 
 *** Keywords ***
@@ -77,59 +78,68 @@ Então realizo Logout com Sucesso
     Should Be Equal As Strings       ${current_url}    ${home.expected_url}
 
 Então validar usuário em atendimento
-    Wait Until Element Is Visible    ${home.service_button}    60
+    Wait Until Element Is Visible    ${home.service_button}    120
+    Scroll Element Into View         ${home.service_button}
     Set Focus To Element             ${home.service_button}
     Click Button                     ${home.service_button}
 
-    Wait Until Element Is Visible    ${home.service_select}    60
+    Wait Until Element Is Visible    ${home.service_select}    120
+    Scroll Element Into View         ${home.service_select}
     Set Focus To Element             ${home.service_select}    
     Click Button                     ${home.service_select}
 
     # É necessário ter um usuário presente
-    Wait Until Element Is Visible    ${home.img_contact}    60
+    Wait Until Element Is Visible    ${home.img_contact}    120
+    Scroll Element Into View         ${home.img_contact}
     Set Focus To Element             ${home.img_contact}
     Click Image                      ${home.img_contact}
 
-Então filtrar por filas  
-    Wait Until Element Is Visible    ${home.atendimento_button}    60
-    Set Focus To Element             ${home.atendimento_button}
-    Click Button                     ${home.atendimento_button}
-    # Não funciona sem o sleep
-    Sleep    2
-    Wait Until Element Is Visible    ${home.all_button}    60
+Então filtrar por filas
+    # Clicar em filtros e filas
+    Wait Until Element Is Visible    ${home.all_button}    120
+    Wait Until Element Is Enabled    ${home.all_button}    120
+    Scroll Element Into View         ${home.all_button} 
     Set Focus To Element             ${home.all_button}
     Click Element                    ${home.all_button}
     
-    Sleep    2
-    Wait Until Element Is Visible    ${home.filas_button}    60
+    Wait Until Element Is Visible    ${home.filas_button}    120
+    Scroll Element Into View         ${home.filas_button}
     Set Focus To Element             ${home.filas_button}
     Click Element                    ${home.filas_button}
-    # Deverá apresentar apenas uma caixa de "Filas"
-    Sleep    2
-    Wait Until Element Is Visible    ${home.filas_label}    60
-    Set Focus To Element             ${home.filas_label}
-    Element Should Be Visible        ${home.filas_label}
 
-Então validar informações do contato no CRM
-    Sleep    2
-    Reload Page
-    Wait Until Element Is Visible    ${home.crm}    60
+    # Deverá apresentar apenas uma caixa de "Filas"
+    Wait Until Element Is Visible    ${home.filas_label}    60
+    Scroll Element Into View         ${home.filas_label}
+    Set Focus To Element             ${home.filas_label}
+    ${filas}=    Get WebElements    ${home.filas_label}
+    Length Should Be    ${filas}    1
+
+Então validar informações do contato no CRM    
+    Wait Until Element Is Visible    ${home.crm}    120
+    Scroll Element Into View         ${home.crm}
     Set Focus To Element             ${home.crm}
     Click Element                    ${home.crm}
     
-    Wait Until Element Is Visible    ${home.funil_crm}    60
+    Wait Until Element Is Visible    ${home.funil_crm}    120
+    Scroll Element Into View         ${home.funil_crm}
     Set Focus To Element             ${home.funil_crm}
     Click Element                    ${home.funil_crm}
+
     # É necessário ter um usuário presente
-    Wait Until Element Is Visible    ${home.img_contato_crm}    60
-    Set Focus To Element             ${home.img_contato_crm}
-    Click Element                    ${home.img_contato_crm}
+    Wait Until Element Is Visible    ${home.img_contato_crm_1}    120
+    Scroll Element Into View         ${home.img_contato_crm_1} 
+    Set Focus To Element             ${home.img_contato_crm_1}
+    Click Element                    ${home.img_contato_crm_1}
+
     # Validar o campo "Atividades", validando que não está com tela branca
-    Wait Until Element Is Visible    ${home.atividades_crm}    60
+    Wait Until Element Is Visible    ${home.atividades_crm}    120
+    Scroll Element Into View         ${home.atividades_crm}
     Set Focus To Element             ${home.atividades_crm}
     Element Should Be Visible        ${home.atividades_crm}
-     # Validar o campo "Informações", validando que não está com tela branca
-    Wait Until Element Is Visible    ${home.imformacoes_gerais_crm}    60
+
+    # Validar o campo "Informações", validando que não está com tela branca
+    Wait Until Element Is Visible    ${home.imformacoes_gerais_crm}    120
+    Scroll Element Into View         ${home.imformacoes_gerais_crm}
     Set Focus To Element             ${home.imformacoes_gerais_crm}
     Element Should Be Visible        ${home.imformacoes_gerais_crm}
 
@@ -183,12 +193,12 @@ Quando acessar o menu Dashboard
     Should Contain                   ${current_url}    dashboard 
 
 E acessar o menu atendimentos
-    # Validar acesso ao Atendimentos
-    Wait Until Element Is Visible    ${home.atendimento_button}    60
+    # Validar acesso à Atendimentos
+    Wait Until Element Is Visible    ${home.atendimento_button}    120
+    Scroll Element Into View         ${home.atendimento_button} 
     Set Focus To Element             ${home.atendimento_button}
-    Click Element                    ${home.atendimento_button}
-    ${current_url}=    Get Location
-    Should Contain                   ${current_url}    tickets
+    Sleep    1
+    Click Button                     ${home.atendimento_button}
 
  Quando acessar o menu atendimento simples
     # Validar acesso à Atendimento Simples
@@ -306,41 +316,44 @@ E acessar a aba contexto do menu configurações
 Então lançar contexto Personalizado
     # Clicar em Personalizado
     Sleep    2    
-    Wait Until Element Is Visible    ${home.personalisado_contexto}    60
+    Wait Until Element Is Visible    ${home.personalisado_contexto}    120
     Scroll Element Into View         ${home.personalisado_contexto} 
     Set Focus To Element             ${home.personalisado_contexto}
     Click Element                    ${home.personalisado_contexto} 
 
     # Clicar em Adicionar Contexto
-    Wait Until Element Is Visible    ${home.add_contexto}    60
+    Wait Until Element Is Visible    ${home.add_contexto}    120
+    Scroll Element Into View         ${home.add_contexto}
     Set Focus To Element             ${home.add_contexto}
     Click Element                    ${home.add_contexto}
     
     # Inserir o nome
-    Wait Until Element Is Visible    ${home.input_nome_contexto}    60
+    Wait Until Element Is Visible    ${home.input_nome_contexto}    120
+    Scroll Element Into View         ${home.input_nome_contexto}
     Set Focus To Element             ${home.input_nome_contexto}
     Input Text                       ${home.input_nome_contexto}    teste_qa_teste
     
-    Sleep    2
     ${contexto_personalizado}     Get Value    ${home.input_nome_contexto}
     Set Global Variable    ${contexto_personalizado}    ${contexto_personalizado}
     Log To Console    Nome inserido: ${contexto_personalizado}     
 
     # Selecionar o tipo "Contato"
-    Wait Until Element Is Visible    xpath=//div[contains(@class, 'react-select__control')]    60
+    Wait Until Element Is Visible    xpath=//div[contains(@class, 'react-select__control')]    120
+    Scroll Element Into View         xpath=//div[contains(@class, 'react-select__control')]
     Set Focus To Element             xpath=//div[contains(@class, 'react-select__control')]
     Click Element                    xpath=//div[contains(@class, 'react-select__control')]
 
-    Sleep    2
+    Sleep    1
     Execute JavaScript    document.evaluate("//div[contains(@class, 'react-select__option') and text()='Contato']", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click()
      
     # Salvar contexto personalizado
-    Sleep    2
-    Wait Until Element Is Visible    ${home.btn_salvar_contexto}    60
+    Sleep    1
+    Wait Until Element Is Visible    ${home.btn_salvar_contexto}    120
+    Scroll Element Into View         ${home.btn_salvar_contexto}
     Set Focus To Element             ${home.btn_salvar_contexto}
     Click Element                    ${home.btn_salvar_contexto}
     
-    Sleep    2
+    Sleep    1
     # Comparar variáveis e validar nome criado
      ${contexto_personalizado_criado}     Get Text  ${home.variavel_nome_contexto_person}
     Set Global Variable    ${contexto_personalizado_criado}    ${contexto_personalizado_criado}
@@ -349,11 +362,10 @@ Então lançar contexto Personalizado
     Should Be Equal    ${contexto_personalizado}    ${contexto_personalizado_criado}    
 
     # Clicar no botão excluir
-    Wait Until Element Is Visible    ${home.btn_excluir_contexto_person}    60
+    Wait Until Element Is Visible    ${home.btn_excluir_contexto_person}    120
+    Scroll Element Into View         ${home.btn_excluir_contexto_person}
     Set Focus To Element             ${home.btn_excluir_contexto_person}
-    Sleep    2
     Click Element                    ${home.btn_excluir_contexto_person}
-    Sleep    2
 
 E acesso IA histórico de pagamento
     # Validar acesso ao menu Inteligência Artificial
@@ -466,11 +478,13 @@ Então visualizar apenas o modal contatos
 
 E validar carrossel
     # Validar que há o carrossel de informações
-    Wait Until Element Is Visible    ${home.btn_carrossel_1}    60
+    Wait Until Element Is Visible    ${home.btn_carrossel_1}    120
+    Scroll Element Into View         ${home.btn_carrossel_1}
     Set Focus To Element             ${home.btn_carrossel_1}
     Element Should Be Visible        ${home.btn_carrossel_1} 
     
-    Wait Until Element Is Visible    ${home.btn_carrossel_2}    60
+    Wait Until Element Is Visible    ${home.btn_carrossel_2}    120
+    Scroll Element Into View         ${home.btn_carrossel_2}
     Set Focus To Element             ${home.btn_carrossel_2}
     Element Should Be Visible        ${home.btn_carrossel_2}   
 

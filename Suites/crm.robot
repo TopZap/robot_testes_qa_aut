@@ -7,10 +7,10 @@ Test Teardown     Fechar o Navegador
 
 *** Test Cases ***
 
-TC001 - Validar acesso ao CRM_Tela branca
+TC001 - Validar acesso ao CRM | Tela branca
     [Documentation]    Testa o acesso ao menu "CRM"
     ...                Testa o acesso ao funil e ao usuário cadastrado
-    ...    ao clicar no usuário, valida suas informações e que não há tela branca
+    ...                ao clicar no usuário, validar suas informações e que não há tela branca
     [Tags]    menu    crm 
     Dado que esteja logado
     Então validar informações do contato no CRM

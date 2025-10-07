@@ -29,6 +29,7 @@ Library    SeleniumLibrary
 ...    filas_label=//label[contains(text(), "Filas")]     
 ...    funil_crm=//button[normalize-space()='Funil de Oportunidades']     
 ...    img_contato_crm=//p[normalize-space()='Douglas teste qa']
+...    img_contato_crm_1=//p[normalize-space()='Douglas Testes']
 ...    atividades_crm=//strong[normalize-space()='Atividades']
 ...    imformacoes_gerais_crm=//strong[normalize-space()='Informações gerais']
 ...    menu_relatorios=//button[contains(@data-testid,'side-bar-option-Relatórios')]
