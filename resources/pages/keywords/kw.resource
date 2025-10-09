@@ -159,8 +159,16 @@ Então acessar Relatórios Tempo Médio
     Set Focus To Element             ${home.coluna_tempo_espera_atendimento} 
     
     # Validar com Screenshot que o formato do tempo está correto
-    Wait Until Element Is Visible    ${home.tempo_medio_horas}    60
+    Wait Until Element Is Visible    ${home.tempo_medio_horas}    120
+    Scroll Element Into View    ${home.tempo_medio_horas}
     Set Focus To Element             ${home.tempo_medio_horas}
+    ${tempo}=    Get Text    ${home.tempo_medio_horas}
+    Log    Valor capturado: ${tempo}
+    Should Match Regexp    ${tempo}    ^\d{2}:\d{2}:\d{2}$
+
+
+    # Wait Until Element Is Visible    ${home.tempo_medio_horas}    60
+    # Set Focus To Element             ${home.tempo_medio_horas}
 
 Edição de mensagens em atendimentos
     # Deverá ter uma mensagem com o texto "Testar edição"
