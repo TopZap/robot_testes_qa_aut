@@ -35,7 +35,7 @@ Library    SeleniumLibrary
 ...    menu_relatorios=//button[contains(@data-testid,'side-bar-option-Relatórios')]
 ...    modulo_tempo_medio=//span[normalize-space()='Tempo médio']
 ...    coluna_tempo_espera_atendimento=//th[normalize-space()='Tempo medio de espera por atendimento']
-...    tempo_medio_horas=//tr[@class='sc-Pgsbw dbPhml']//td[@xpath='1']
+...    tempo_medio_horas=//td[@data-label='Number'][normalize-space()='00:42:21']
 ...    testar_edição=(//p[@class='message'][normalize-space()='Testar edição'])[1]
 ...    menu_editar_msgs=//div[@class='message not_tail has_send']//button[@aria-label='menu']
 ...    editar_mensagens=//button[normalize-space()='Editar mensagem']
