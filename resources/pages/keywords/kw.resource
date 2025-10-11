@@ -17,32 +17,35 @@ Fechar o Navegador
     Close Browser
 
 Dado que esteja logado
+    # Inserir usuário
     Wait Until Element Is Enabled    ${home.username_field}    60
     Set Focus To Element             ${home.username_field}
     Input Text                       ${home.username_field}    ${home.username}
-
+    # Inserir senha
     Wait Until Element Is Enabled    ${home.password_field}    60
     Set Focus To Element             ${home.password_field}
     Input Text                       ${home.password_field}    ${home.password}
-    
+    # Clicar em login
     Wait Until Element Is Enabled    ${home.login_button}    60
     Set Focus To Element             ${home.login_button}
     Click Element                    ${home.login_button}
 
 Dado que esteja logado Admin
+    # Inserir usuário
     Wait Until Element Is Enabled    ${home.username_field}    60
     Set Focus To Element             ${home.username_field}
     Input Text                       ${home.username_field}    ${home.user_name_admin}
-
+    # Inserir senha
     Wait Until Element Is Enabled    ${home.password_field}    60
     Set Focus To Element             ${home.password_field}
     Input Text                       ${home.password_field}    ${home.pass_adm}
-
+    # Clicar em login
     Wait Until Element Is Enabled    ${home.login_button}    60
     Set Focus To Element             ${home.login_button}
     Click Button                     ${home.login_button}
 
 Quando estiver logado com usuário teste
+    # Inserir usuário
     Wait Until Element Is Enabled    ${home.username_field}    60
     Input Text                       ${home.username_field}    test@test.com
     Input Text                       ${home.password_field}    123456
@@ -50,26 +53,33 @@ Quando estiver logado com usuário teste
     Double Click Element             ${home.login_button}
 
 Então ralizo Login com usuário não cadastrado
-    Wait Until Element Is Enabled    ${home.username_field}    60
+    # Inserir usuário não cadastrado
+    Wait Until Element Is Enabled    ${home.username_field}    60        
     Input Text                       ${home.username_field}    ${home.username_nao_cadastrado}
-    Input Text                       ${home.password_field}    ${home.password}
+    # Inserir senha
+    Input Text                       ${home.password_field}    ${home.password}    
     Click Button                     ${home.login_button}
+    # Validar mensagem de erro
     Wait Until Element Is Enabled    ${home.error_login}    60
     Set Focus To Element             ${home.error_login}
     ${Erro_Login}    Get Text    ${home.error_login}
     Log To Console    Validar mensagem de erro: ${Erro_Login}
 
  Então realizo login com senha inválida
+     # Inserir usuário
     Wait Until Element Is Enabled    ${home.username_field}    60
     Input Text                       ${home.username_field}    ${home.username}
+    # Inserir senha inválida
     Input Text                       ${home.password_field}    ${home.password_invalido}
     Click Button                     ${home.login_button}
     Wait Until Element Is Enabled    ${home.error_login}    60
     Set Focus To Element             ${home.error_login}
+    # Validar mensagem de erro
     ${Erro_Login}    Get Text    ${home.error_login}
     Log To Console    Validar mensagem de erro: ${Erro_Login}
 
 Então realizo Logout com Sucesso
+    # Validar logout
     Scroll Element Into View         ${home.logout}
     Wait Until Element Is Visible    ${home.logout}    60
     Click Button                     ${home.logout}
@@ -78,17 +88,16 @@ Então realizo Logout com Sucesso
     Should Be Equal As Strings       ${current_url}    ${home.expected_url}
 
 Então validar usuário em atendimento
+    # Validar que há usuário em atendimento
     Wait Until Element Is Visible    ${home.service_button}    120
     Scroll Element Into View         ${home.service_button}
     Set Focus To Element             ${home.service_button}
     Click Button                     ${home.service_button}
-
     Wait Until Element Is Visible    ${home.service_select}    120
     Scroll Element Into View         ${home.service_select}
     Set Focus To Element             ${home.service_select}    
     Click Button                     ${home.service_select}
-
-    # É necessário ter um usuário presente
+    # É necessário ter um usuário
     Wait Until Element Is Visible    ${home.img_contact}    120
     Scroll Element Into View         ${home.img_contact}
     Set Focus To Element             ${home.img_contact}
