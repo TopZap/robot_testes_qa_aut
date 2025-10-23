@@ -66,7 +66,7 @@ Então ralizo Login com usuário não cadastrado
     Log To Console    Validar mensagem de erro: ${Erro_Login}
 
  Então realizo login com senha inválida
-     # Inserir usuário
+    # Inserir usuário
     Wait Until Element Is Enabled    ${home.username_field}    60
     Input Text                       ${home.username_field}    ${home.username}
     # Inserir senha inválida
@@ -109,13 +109,11 @@ Então filtrar por filas
     Wait Until Element Is Enabled    ${home.all_button}    120
     Scroll Element Into View         ${home.all_button} 
     Set Focus To Element             ${home.all_button}
-    Click Element                    ${home.all_button}
-    
+    Click Element                    ${home.all_button}    
     Wait Until Element Is Visible    ${home.filas_button}    120
     Scroll Element Into View         ${home.filas_button}
     Set Focus To Element             ${home.filas_button}
     Click Element                    ${home.filas_button}
-
     # Deverá apresentar apenas uma caixa de "Filas"
     Wait Until Element Is Visible    ${home.filas_label}    60
     Scroll Element Into View         ${home.filas_label}
@@ -128,24 +126,21 @@ Então validar informações do contato no CRM
     Scroll Element Into View         ${home.crm}
     Set Focus To Element             ${home.crm}
     Click Element                    ${home.crm}
-    
+    # Acessar o funil
     Wait Until Element Is Visible    ${home.funil_crm}    120
     Scroll Element Into View         ${home.funil_crm}
     Set Focus To Element             ${home.funil_crm}
     Click Element                    ${home.funil_crm}
-
     # É necessário ter um usuário presente
     Wait Until Element Is Visible    ${home.img_contato_crm_1}    120
     Scroll Element Into View         ${home.img_contato_crm_1} 
     Set Focus To Element             ${home.img_contato_crm_1}
     Click Element                    ${home.img_contato_crm_1}
-
     # Validar o campo "Atividades", validando que não está com tela branca
     Wait Until Element Is Visible    ${home.atividades_crm}    120
     Scroll Element Into View         ${home.atividades_crm}
     Set Focus To Element             ${home.atividades_crm}
     Element Should Be Visible        ${home.atividades_crm}
-
     # Validar o campo "Informações", validando que não está com tela branca
     Wait Until Element Is Visible    ${home.imformacoes_gerais_crm}    120
     Scroll Element Into View         ${home.imformacoes_gerais_crm}
@@ -156,17 +151,14 @@ Então acessar Relatórios Tempo Médio
     # Acessar o menu "Relatótios"
     Wait Until Element Is Visible    ${home.menu_relatorios}    60
     Set Focus To Element             ${home.menu_relatorios}
-    Click Element                    ${home.menu_relatorios}
-    
+    Click Element                    ${home.menu_relatorios}    
     # Acessar o módulo "Tempo Médio"
     Wait Until Element Is Visible    ${home.modulo_tempo_medio}    60
     Set Focus To Element             ${home.modulo_tempo_medio}
     Click Element                    ${home.modulo_tempo_medio}
-
     # Validar a coluna "Tempo Médio de Espera por Atendimento"
     Wait Until Element Is Visible    ${home.coluna_tempo_espera_atendimento}    60
-    Set Focus To Element             ${home.coluna_tempo_espera_atendimento} 
-    
+    Set Focus To Element             ${home.coluna_tempo_espera_atendimento}    
     # Validar o formato do tempo está correto, em 00:00:00
     Wait Until Element Is Visible    ${home.tempo_medio_horas}    120
     Scroll Element Into View    ${home.tempo_medio_horas}
@@ -180,19 +172,15 @@ Edição de mensagens em atendimentos
     Wait Until Element Is Visible    ${home.testar_edição}    60
     Set Focus To Element             ${home.testar_edição}
     Click Element                    ${home.testar_edição}
-
     Wait Until Element Is Visible    ${home.menu_editar_msgs}    60
     Set Focus To Element             ${home.menu_editar_msgs}
     Click Element                    ${home.menu_editar_msgs}
-
     Wait Until Element Is Visible    ${home.editar_mensagens}    60
     Set Focus To Element             ${home.editar_mensagens}
     Click Element                    ${home.editar_mensagens}
-
     Wait Until Element Is Visible    ${home.inserir_msg_edição}    60
     Set Focus To Element             ${home.inserir_msg_edição}
     Clear Element Text               ${home.inserir_msg_edição}
-
     Input Text                       ${home.inserir_msg_edição}    Mensagem Editada    
 
 Quando acessar o menu Dashboard
@@ -200,7 +188,6 @@ Quando acessar o menu Dashboard
     Wait Until Element Is Visible    ${home.dashboard}    60
     Set Focus To Element             ${home.dashboard}
     Click Element                    ${home.dashboard}
-
     Wait Until Element Is Enabled    ${home.success_msg}    60
     ${current_url}=    Get Location
     Should Contain                   ${current_url}    dashboard 
@@ -227,8 +214,7 @@ Quando acessar o menu contatos
     Set Focus To Element             ${home.contatos_menu}
     Click Element                    ${home.contatos_menu}
     ${current_url}=    Get Location
-    Should Contain                   ${current_url}    contacts
-    
+    Should Contain                   ${current_url}    contacts    
     Wait Until Element Is Visible    ${home.contatos_page}    60
     Set Focus To Element             ${home.contatos_page}
     Element Should Be Visible        ${home.contatos_page}
@@ -240,7 +226,6 @@ Quando acessar o menu campanhas
     Click Element                    ${home.menu_campanhas}
     ${current_url}=    Get Location
     Should Contain                   ${current_url}    schedule
-
     Wait Until Element Is Visible    ${home.page_campanhas}    60
     Set Focus To Element             ${home.page_campanhas}
     Element Should Be Visible        ${home.page_campanhas}
@@ -252,7 +237,6 @@ Quando acessar o menu relatórios
     Click Element                    ${home.menu_relatorios}
     ${current_url}=    Get Location
     Should Contain                   ${current_url}    reports
-
     Wait Until Element Is Visible    ${home.page_relatorios}    60
     Set Focus To Element             ${home.page_relatorios}
     Element Should Be Visible        ${home.page_relatorios}
@@ -265,7 +249,6 @@ Quando acessar o menu Google Agenda
     Click Element                    ${home.menu_google_agenda}
     ${current_url}=    Get Location
     Should Contain                   ${current_url}    google_agenda
-
     Wait Until Element Is Visible    ${home.page_google_agenda}    60
     Set Focus To Element             ${home.page_google_agenda}
     Element Should Be Visible        ${home.page_google_agenda}
@@ -278,7 +261,6 @@ Quando acessar o menu chat shop
     Click Element                    ${home.menu_chat_shop}
     ${current_url}=    Get Location
     Should Contain                   ${current_url}    shop_pedidos
-
     Wait Until Element Is Visible    ${home.page_chat_shop}    60
     Set Focus To Element             ${home.page_chat_shop}
     Element Should Be Visible        ${home.page_chat_shop}
@@ -291,7 +273,6 @@ Quando acessar o menu pedidos
     Click Element                    ${home.menu_pedidos}
     ${current_url}=    Get Location
     Should Contain                   ${current_url}    chat_shop_ordered
-
     Wait Until Element Is Visible    ${home.page_pedidos}    60
     Set Focus To Element             ${home.page_pedidos}
     Element Should Be Visible        ${home.page_pedidos}
@@ -305,7 +286,6 @@ Quando acessar o menu administração
     Click Element                    ${home.menu_administração}
     ${current_url}=    Get Location
     Should Contain                   ${current_url}    administration
-
     Wait Until Element Is Visible    ${home.page_administração}    60
     Set Focus To Element             ${home.page_administração}
     Element Should Be Visible        ${home.page_administração}
@@ -315,8 +295,7 @@ Quando acessar o menu configuracões
     Scroll Element Into View         ${home.menu_configuração}
     Wait Until Element Is Visible    ${home.menu_configuração}    60
     Set Focus To Element             ${home.menu_configuração}
-    Click Element                    ${home.menu_configuração}  
-
+    Click Element                    ${home.menu_configuração} 
     Wait Until Element Is Visible    ${home.page_configurações}    60
     Set Focus To Element             ${home.page_configurações}
     Element Should Be Visible        ${home.page_configurações}
@@ -333,47 +312,38 @@ Então lançar contexto Personalizado
     Scroll Element Into View         ${home.personalisado_contexto} 
     Set Focus To Element             ${home.personalisado_contexto}
     Click Element                    ${home.personalisado_contexto} 
-
     # Clicar em Adicionar Contexto
     Wait Until Element Is Visible    ${home.add_contexto}    120
     Scroll Element Into View         ${home.add_contexto}
     Set Focus To Element             ${home.add_contexto}
-    Click Element                    ${home.add_contexto}
-    
+    Click Element                    ${home.add_contexto}    
     # Inserir o nome
     Wait Until Element Is Visible    ${home.input_nome_contexto}    120
     Scroll Element Into View         ${home.input_nome_contexto}
     Set Focus To Element             ${home.input_nome_contexto}
-    Input Text                       ${home.input_nome_contexto}    teste_qa_teste
-    
+    Input Text                       ${home.input_nome_contexto}    teste_qa_teste    
     ${contexto_personalizado}     Get Value    ${home.input_nome_contexto}
     Set Global Variable    ${contexto_personalizado}    ${contexto_personalizado}
-    Log To Console    Nome inserido: ${contexto_personalizado}     
-
+    Log To Console    Nome inserido: ${contexto_personalizado}  
     # Selecionar o tipo "Contato"
     Wait Until Element Is Visible    xpath=//div[contains(@class, 'react-select__control')]    120
     Scroll Element Into View         xpath=//div[contains(@class, 'react-select__control')]
     Set Focus To Element             xpath=//div[contains(@class, 'react-select__control')]
     Click Element                    xpath=//div[contains(@class, 'react-select__control')]
-
     Sleep    1
-    Execute JavaScript    document.evaluate("//div[contains(@class, 'react-select__option') and text()='Contato']", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click()
-     
+    Execute JavaScript    document.evaluate("//div[contains(@class, 'react-select__option') and text()='Contato']", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click()     
     # Salvar contexto personalizado
     Sleep    1
     Wait Until Element Is Visible    ${home.btn_salvar_contexto}    120
     Scroll Element Into View         ${home.btn_salvar_contexto}
     Set Focus To Element             ${home.btn_salvar_contexto}
-    Click Element                    ${home.btn_salvar_contexto}
-    
+    Click Element                    ${home.btn_salvar_contexto}    
     Sleep    1
     # Comparar variáveis e validar nome criado
      ${contexto_personalizado_criado}     Get Text  ${home.variavel_nome_contexto_person}
     Set Global Variable    ${contexto_personalizado_criado}    ${contexto_personalizado_criado}
-    Log To Console    Nome criado: ${contexto_personalizado_criado} 
-    
-    Should Be Equal    ${contexto_personalizado}    ${contexto_personalizado_criado}    
-
+    Log To Console    Nome criado: ${contexto_personalizado_criado}     
+    Should Be Equal    ${contexto_personalizado}    ${contexto_personalizado_criado}
     # Clicar no botão excluir
     Wait Until Element Is Visible    ${home.btn_excluir_contexto_person}    120
     Scroll Element Into View         ${home.btn_excluir_contexto_person}
@@ -384,17 +354,14 @@ E acesso IA histórico de pagamento
     # Validar acesso ao menu Inteligência Artificial
     Wait Until Element Is Visible    ${home.ia_menu}    60
     Set Focus To Element             ${home.ia_menu}
-    Click Element                    ${home.ia_menu} 
-    
+    Click Element                    ${home.ia_menu}     
     Wait Until Element Is Visible    ${home.ia_menu}    60
     Set Focus To Element             ${home.ia_menu}
     Element Should Be Visible        ${home.ia_menu} 
-
     # Acessar o módulo histórico de pagamentos
     Wait Until Element Is Visible    ${home.ia_historico_pg}    60
     Set Focus To Element             ${home.ia_historico_pg}
-    Click Element                    ${home.ia_historico_pg} 
-    
+    Click Element                    ${home.ia_historico_pg}     
     # Retorna a url atual do navegador
     ${url_atual}=    Get Location
     Should Be Equal As Strings    ${url_atual}    https://qa.greenchat.com.br/administration/ia?graph=day&menu=payments
@@ -403,17 +370,14 @@ E acesso IA histórico de uso
     # Validar acesso ao menu Inteligência Artificial
     Wait Until Element Is Visible    ${home.ia_menu}    60
     Set Focus To Element             ${home.ia_menu}
-    Click Element                    ${home.ia_menu} 
-    
+    Click Element                    ${home.ia_menu}     
     Wait Until Element Is Visible    ${home.ia_menu}    60
     Set Focus To Element             ${home.ia_menu}
     Element Should Be Visible        ${home.ia_menu} 
-
     # Acessar o módulo histórico de uso
     Wait Until Element Is Visible    ${home.ia_historico_uso}    60
     Set Focus To Element             ${home.ia_historico_uso}
-    Click Element                    ${home.ia_historico_uso} 
-    
+    Click Element                    ${home.ia_historico_uso}     
     # Retorna a url atual do navegador
     ${url_atual}=    Get Location
     Should Be Equal As Strings    ${url_atual}    https://qa.greenchat.com.br/administration/ia?graph=day&menu=usages
@@ -422,17 +386,14 @@ E acesso IA relatorios de erros
     # Validar acesso ao menu Inteligência Artificial
     Wait Until Element Is Visible    ${home.ia_menu}    60
     Set Focus To Element             ${home.ia_menu}
-    Click Element                    ${home.ia_menu} 
-    
+    Click Element                    ${home.ia_menu}     
     Wait Until Element Is Visible    ${home.ia_menu}    60
     Set Focus To Element             ${home.ia_menu}
     Element Should Be Visible        ${home.ia_menu} 
-
     # Acessar o módulo relatórios de errros
     Wait Until Element Is Visible    ${home.ia_relatorios_erros}    60
     Set Focus To Element             ${home.ia_relatorios_erros}
-    Click Element                    ${home.ia_relatorios_erros} 
-    
+    Click Element                    ${home.ia_relatorios_erros}     
     # Retorna a url atual do navegador
     ${url_atual}=    Get Location
     Should Be Equal As Strings    ${url_atual}    https://qa.greenchat.com.br/administration/ia?graph=day&menu=errors
@@ -441,17 +402,14 @@ E acesso IA configurações
     # Validar acesso ao menu Inteligência Artificial
     Wait Until Element Is Visible    ${home.ia_menu}    60
     Set Focus To Element             ${home.ia_menu}
-    Click Element                    ${home.ia_menu} 
-    
+    Click Element                    ${home.ia_menu}     
     Wait Until Element Is Visible    ${home.ia_menu}    60
     Set Focus To Element             ${home.ia_menu}
     Element Should Be Visible        ${home.ia_menu} 
-
     # Acessar o módulo configurações
     Wait Until Element Is Visible    ${home.ia_configuracoes}    60
     Set Focus To Element             ${home.ia_configuracoes}
     Click Element                    ${home.ia_configuracoes} 
-    
     # Retorna a url atual do navegador
     ${url_atual}=    Get Location
     Should Be Equal As Strings    ${url_atual}    https://qa.greenchat.com.br/administration/ia?graph=day&menu=configs 
@@ -460,8 +418,7 @@ E acessar o módulo grupo de permissões
     # Acessar o módulo Grupo de Permissões
     Wait Until Element Is Visible    ${home.grupo_permissoes}    60
     Set Focus To Element             ${home.grupo_permissoes}
-    Click Element                    ${home.grupo_permissoes} 
-    
+    Click Element                    ${home.grupo_permissoes}     
     # Validar o usuário "teste douglas qa"
     Wait Until Element Is Visible    ${home.grupo_teste_douglas_qa}    60
     Set Focus To Element             ${home.grupo_teste_douglas_qa}
@@ -471,13 +428,11 @@ Então selecionar o modal contatos
     # Clicar em páginas e selecionar o modal "Contatos"
     Wait Until Element Is Visible    ${home.paginas_permissoes}    60
     Set Focus To Element             ${home.paginas_permissoes}
-    Click Element                    ${home.paginas_permissoes} 
-    
+    Click Element                    ${home.paginas_permissoes}     
     # Clicar caso o modal não esteja selecionado 
     Wait Until Element Is Visible    ${home.modal_contatos}    60
     Set Focus To Element             ${home.modal_contatos}
     Double Click Element             ${home.modal_contatos}  
-
     # Clicar em salvar
     Wait Until Element Is Visible    ${home.btn_salvar_permissoes}    60
     Set Focus To Element             ${home.btn_salvar_permissoes}
@@ -494,8 +449,7 @@ E validar carrossel
     Wait Until Element Is Visible    ${home.btn_carrossel_1}    120
     Scroll Element Into View         ${home.btn_carrossel_1}
     Set Focus To Element             ${home.btn_carrossel_1}
-    Element Should Be Visible        ${home.btn_carrossel_1} 
-    
+    Element Should Be Visible        ${home.btn_carrossel_1}     
     Wait Until Element Is Visible    ${home.btn_carrossel_2}    120
     Scroll Element Into View         ${home.btn_carrossel_2}
     Set Focus To Element             ${home.btn_carrossel_2}
@@ -519,73 +473,58 @@ Então criar e validar plano por IA
     # Acessar Configuração do Plano
     Wait Until Element Is Visible    ${home.btn_config_plano_ia}    60
     Set Focus To Element             ${home.btn_config_plano_ia}
-    Click Element                    ${home.btn_config_plano_ia}
-    
+    Click Element                    ${home.btn_config_plano_ia}    
     # Inserir dados | Nome do plano
     Wait Until Element Is Visible    ${home.imput_plano_ia}    60
     Set Focus To Element             ${home.imput_plano_ia}
     Input Text                       ${home.imput_plano_ia}    Plano IA Automatizado
-
     # Guardar o plano criado em variável para validação final
     ${plano_IA_criado_aut}    Get Value   ${home.imput_plano_ia}
-    Log To Console    Plano IA criado: ${plano_IA_criado_aut}  
-    
+    Log To Console    Plano IA criado: ${plano_IA_criado_aut}      
     # Selecionar moeda do plano IA
     Wait Until Element Is Visible    ${home.select_moeda_ia}    60
     Set Focus To Element             ${home.select_moeda_ia}
-    Click Element                    ${home.select_moeda_ia}    
-
+    Click Element                    ${home.select_moeda_ia} 
     Wait Until Element Is Visible    ${home.real_brasileiro_moeda_ia}    60
     Click Element                    ${home.real_brasileiro_moeda_ia}
-
     # Inserir preço do plano
     Wait Until Element Is Visible    ${home.preco_plano_ia}    60
     Set Focus To Element             ${home.preco_plano_ia}
     Input Text                       ${home.preco_plano_ia}    1000
-
     # Inserir dias de testes
     Wait Until Element Is Visible    ${home.dias_testes_ia}    60
     Set Focus To Element             ${home.dias_testes_ia}
     Input Text                       ${home.dias_testes_ia}    1
-
     # Inserir quantidade de usuários
     Wait Until Element Is Visible    ${home.qt_usuarios_ia}    60
     Set Focus To Element             ${home.qt_usuarios_ia}
-    Input Text                       ${home.qt_usuarios_ia}    1
-    
+    Input Text                       ${home.qt_usuarios_ia}    1    
     # Inserir tipo de pagamento
     Wait Until Element Is Visible    ${home.qt_conexoes_ia}    60
     Set Focus To Element             ${home.qt_conexoes_ia}
     Input Text                       ${home.qt_conexoes_ia}    1
-
     # Inserir quantidade de conexões
     Wait Until Element Is Visible    ${home.tipo_pagamento_ia}    60
     Set Focus To Element             ${home.tipo_pagamento_ia}
     Click Element                    ${home.tipo_pagamento_ia}
-
     Wait Until Element Is Visible    ${home.select_cartao_credito_ia}    60
     Click Element                    ${home.select_cartao_credito_ia}
-
     # Clicar em "Módulo do Plano" e selecionar IA
     Wait Until Element Is Visible    ${home.btn_modulo_plano}    60
     Set Focus To Element             ${home.btn_modulo_plano}
     Click Element                    ${home.btn_modulo_plano}
-
     Wait Until Element Is Visible    ${home.select_ia_modulos}    60
     Set Focus To Element             ${home.select_ia_modulos}
     Click Element                    ${home.select_ia_modulos} 
-
     # Inserir quantidade de tokens
     Wait Until Element Is Visible    ${home.qt_tokens_modulo_ia}    60
     Set Focus To Element             ${home.qt_tokens_modulo_ia}
     Input Text                       ${home.qt_tokens_modulo_ia}    10000    
-
     # Salvar plano crido por IA
     Wait Until Element Is Visible    ${home.btn_salvar_ia}    60
     Scroll Element Into View         ${home.btn_salvar_ia}
     Set Focus To Element             ${home.btn_salvar_ia}
-    Click Element                    ${home.btn_salvar_ia}
-    
+    Click Element                    ${home.btn_salvar_ia}    
     # Validar plano IA criado, comparando variáveis
     Sleep    3
     Wait Until Element Is Visible    ${home.variavel_plano_ia_automatizado}    60
@@ -593,17 +532,14 @@ Então criar e validar plano por IA
     ${validar_plano_criado}    Get Text   ${home.variavel_plano_ia_automatizado}
     Log To Console    Plano IA criado: ${validar_plano_criado}
     Should Be Equal    ${validar_plano_criado}    Plano IA Automatizado
-
     # Excluir plano
     Wait Until Element Is Visible    ${home.excluir_plano}    60
     Scroll Element Into View         ${home.excluir_plano}
     Set Focus To Element             ${home.excluir_plano}
     Click Element                    ${home.excluir_plano}
-
     Wait Until Element Is Visible    ${home.btn_confirmar}    60
     Set Focus To Element             ${home.btn_confirmar}
-    Click Element                    ${home.btn_confirmar}
-    
+    Click Element                    ${home.btn_confirmar}    
     # Validar plano deletado
     Sleep    2
     Wait Until Element Is Visible    ${home.plano_deletado}    60
@@ -614,8 +550,7 @@ Quando acessar Agentes de IA
     # Validar acesso ao menu Agentes de IA
     Wait Until Element Is Visible    ${home.btn_agentes_ia}    120
     Set Focus To Element             ${home.btn_agentes_ia}
-    Click Element                    ${home.btn_agentes_ia} 
-    
+    Click Element                    ${home.btn_agentes_ia}     
     # Validar Home Page "Agentes"
     Wait Until Element Is Visible    ${home.page_agentes}    120
     Set Focus To Element             ${home.page_agentes}
@@ -629,8 +564,7 @@ Quando criar agentes de ia
     Wait Until Element Is Visible    ${home.btn_add_agente}    150
     Scroll Element Into View         ${home.btn_add_agente}
     Set Focus To Element             ${home.btn_add_agente}
-    Click Element                    ${home.btn_add_agente}
-    
+    Click Element                    ${home.btn_add_agente}    
     # Inserir nome aleatório do agente e guardar em variável
     # Será editado o agente conforme cada criação
     Wait Until Element Is Visible    ${home.input_nome_agente_ia}    150
@@ -641,30 +575,24 @@ Quando criar agentes de ia
     ${nome_agente}    Get Value    ${home.input_nome_agente_ia}
     Set Global Variable    ${nome_agente}    ${nome_agente}
     Log To Console    Page: ${nome_agente}
-
     # Salvar Agente IA
     Wait Until Element Is Visible    ${home.salvar_agentesIA}    150
     Scroll Element Into View         ${home.salvar_agentesIA}
     Set Focus To Element             ${home.salvar_agentesIA}
     Click Element                    ${home.salvar_agentesIA}
-
     # Aguardar até que não esteja mais visível "Agente criado com sucesso"
     Wait Until Element Is Visible       ${home.agente_criado_sucesso}    150
     Scroll Element Into View            ${home.agente_criado_sucesso}
     Set Focus To Element                ${home.agente_criado_sucesso}
     Wait Until Page Does Not Contain    ${home.agente_criado_sucesso}    150
-
     # Agora clicar no botão Editar do agente criado
     # Espera a tabela aparecer
     Wait Until Element Is Visible    //tbody    150
-
     # Localiza o td que contém o nome do agente
     ${nome_agente_tabela}    Get Text    //td[@data-label='Nome' and normalize-space()='${nome_agente}']
     Log To Console    Nome do agente na tabela: ${nome_agente_tabela}
-
     # Localiza o botão Editar na mesma linha
     ${editar_botao}    Set Variable    //td[@data-label='Nome' and normalize-space()='${nome_agente}']/following-sibling::td//button[1]//*[name()='svg']
-
     # Clicar no botão Editar
     Wait Until Element Is Visible    ${editar_botao}    150
     Scroll Element Into View         ${editar_botao}
@@ -680,18 +608,15 @@ E editar agentes de IA
     Scroll Element Into View         ${home.input_perfil_IA}
     Set Focus To Element             ${home.input_perfil_IA}
     Input Text                       ${home.input_perfil_IA}    ${home.perfil_agente}
-
     Wait Until Element Is Visible    ${home.regras_negocios_ia}    150
     Scroll Element Into View         ${home.regras_negocios_ia}
     Set Focus To Element             ${home.regras_negocios_ia}
     Input Text                       ${home.regras_negocios_ia}    ${home.input_regras_negocios}
-
     # Clicar em próximo
     Wait Until Element Is Visible    ${home.btn_proximo}    150
     Scroll Element Into View         ${home.btn_proximo}
     Set Focus To Element             ${home.btn_proximo}
-    Click Element                    ${home.btn_proximo}
-    
+    Click Element                    ${home.btn_proximo}    
     # Aguardar até que não esteja mais visível "Atualização de agente"
     Wait Until Element Is Visible       ${home.msg_atualizando_ag_ia}    150
     Scroll Element Into View            ${home.msg_atualizando_ag_ia}
@@ -705,42 +630,35 @@ E editar base de conhecimento | agentes de IA
     Scroll Element Into View         ${home.input_base_conhecimento}
     Set Focus To Element             ${home.input_base_conhecimento}
     Input Text                       ${home.input_base_conhecimento}    ${home.text_conhecimento_agente}
-
     Wait Until Element Is Visible    ${home.salvar_agentesIA}    150
     Scroll Element Into View         ${home.salvar_agentesIA}
     Set Focus To Element             ${home.salvar_agentesIA}
     Click Element                    ${home.salvar_agentesIA}
-
     # Aguardar até que não esteja mais visível "Atualização de agente"
     Wait Until Element Is Visible       ${home.msg_atualizando_ag_ia}    150
     Scroll Element Into View            ${home.msg_atualizando_ag_ia}
     Set Focus To Element                ${home.msg_atualizando_ag_ia}
     Wait Until Page Does Not Contain    ${home.msg_atualizando_ag_ia}    150
-
     # Clicar em próximo
     Wait Until Element Is Visible    ${home.btn_proximo}    150
     Scroll Element Into View         ${home.btn_proximo}
     Set Focus To Element             ${home.btn_proximo}
-    Click Element                    ${home.btn_proximo}
-    
+    Click Element                    ${home.btn_proximo}    
     # Aguardar até que não esteja mais visível "Atualização de agente"
     Wait Until Element Is Visible       ${home.msg_atualizando_ag_ia}    150
     Scroll Element Into View            ${home.msg_atualizando_ag_ia}
     Set Focus To Element                ${home.msg_atualizando_ag_ia}
     Wait Until Page Does Not Contain    ${home.msg_atualizando_ag_ia}    150
-
     # Clicar em próximo
     Wait Until Element Is Visible    ${home.btn_proximo}    150
     Scroll Element Into View         ${home.btn_proximo}
     Set Focus To Element             ${home.btn_proximo}
     Click Element                    ${home.btn_proximo}
-
     # Clicar em próximo
     Wait Until Element Is Visible    ${home.btn_proximo}    150
     Scroll Element Into View         ${home.btn_proximo}
     Set Focus To Element             ${home.btn_proximo}
     Click Element                    ${home.btn_proximo}
-
     # Aguardar até que não esteja mais visível "Atualização de agente"
     Wait Until Element Is Visible       ${home.msg_atualizando_ag_ia}    150
     Scroll Element Into View            ${home.msg_atualizando_ag_ia}
@@ -753,21 +671,18 @@ Então testar o Agente de IA
     Wait Until Element Is Visible    ${home.input_msg_teste_ia}    150
     Execute Javascript    document.evaluate("${home.input_msg_teste_ia}", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.value = '${home.perguntar_nome}';
     Press Key    ${home.input_msg_teste_ia}    ENTER
-
     # Clicar em enviar
     Sleep    1
     Wait Until Element Is Visible    ${home.btn_enviar_msg}    150
     Scroll Element Into View         ${home.btn_enviar_msg}
     Set Focus To Element             ${home.btn_enviar_msg}
     Click Element                    ${home.btn_enviar_msg}
-
     # Aguardar carregar teste do agente de IA
     Wait Until Element Is Visible        ${home.loading_testar_ia}    150
     Scroll Element Into View             ${home.loading_testar_ia}
     Set Focus To Element                 ${home.loading_testar_ia}
     Wait Until Element Is Not Visible    ${home.loading_testar_ia}    150
-    Run Keyword And Ignore Error    Element Should Not Be Visible        ${home.loading_testar_ia}
-    
+    Run Keyword And Ignore Error    Element Should Not Be Visible        ${home.loading_testar_ia}    
     # Validar que a resposta contém o nome "Douglas Tavares"
     Sleep    1
     Wait Until Element Is Visible    ${home.resposta_nome}    150
@@ -776,74 +691,3 @@ Então testar o Agente de IA
     ${resposta}    Get Text    ${home.resposta_nome}
     Log To Console    >>> RESPOSTA DO AGENTE: ${resposta}
     Should Match Regexp    ${resposta}    .*Douglas Tavares.*
-    
-    ### Validar Pergunta sobre o telefone ###
-    # Inserir mensagem para testar Agente de IA
-    # Sleep    1
-    # Wait Until Element Is Visible    ${home.input_msg_teste_ia}    150
-    # Execute Javascript    document.evaluate("${home.input_msg_teste_ia}", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.value = '${home.perguntar_tel}';
-    # Press Key    ${home.input_msg_teste_ia}    ENTER
-    # Press Key    ${home.input_msg_teste_ia}    ENTER
-    # Press Key    ${home.input_msg_teste_ia}    ENTER
-
-    # Sleep    1
-    # Wait Until Element Is Visible    ${home.input_msg_teste_ia}    150
-    # Scroll Element Into View         ${home.input_msg_teste_ia}    
-    # Set Focus To Element             ${home.input_msg_teste_ia}
-    # Input Text                       ${home.input_msg_teste_ia}    ${home.perguntar_tel}
-
-    # # Clicar em enviar
-    # Sleep    1
-    # Wait Until Element Is Visible    ${home.btn_enviar_msg}    150
-    # Scroll Element Into View         ${home.btn_enviar_msg}
-    # Set Focus To Element             ${home.btn_enviar_msg}
-    # Click Element                    ${home.btn_enviar_msg}
-
-    # # Aguardar carregar teste do agente de IA
-    # Sleep    1
-    # Wait Until Element Is Visible        ${home.loading_testar_ia}    150
-    # Scroll Element Into View             ${home.loading_testar_ia}
-    # Set Focus To Element                 ${home.loading_testar_ia}
-    # Wait Until Element Is Not Visible    ${home.loading_testar_ia}    150
-    # Run Keyword And Ignore Error    Element Should Not Be Visible        ${home.loading_testar_ia}
-
-    # # Validar que a resposta contém o telefone "988632111"
-    # Sleep    1
-    # Wait Until Element Is Visible    ${home.resposta_tel}    150
-    # Scroll Element Into View         ${home.resposta_tel}    
-    # Set Focus To Element             ${home.resposta_tel}
-    # ${resposta}    Get Text    ${home.resposta_tel}
-    # Log To Console    >>> RESPOSTA DO AGENTE: ${resposta}
-    # Should Match Regexp    ${resposta}    .*98863-2111.*
-    
-    # # ### Validar Pergunta sobre a modalidade ###
-    # # # Inserir mensagem para testar Agente de IA
-    # # Sleep    1
-    # # Wait Until Element Is Visible    ${home.input_msg_teste_ia}    150
-    # # Scroll Element Into View         ${home.input_msg_teste_ia}    
-    # # Set Focus To Element             ${home.input_msg_teste_ia}
-    # # Input Text                       ${home.input_msg_teste_ia}    ${home.perguntar_modalidade}    
-
-    # # # Clicar em enviar
-    # # Sleep    1
-    # # Wait Until Element Is Visible    ${home.btn_enviar_msg}    150
-    # # Scroll Element Into View         ${home.btn_enviar_msg}
-    # # Set Focus To Element             ${home.btn_enviar_msg}
-    # # Click Element                    ${home.btn_enviar_msg}
-
-    # # # Aguardar carregar teste do agente de IA
-    # # Sleep    1
-    # # Wait Until Element Is Visible        ${home.loading_testar_ia}    150
-    # # Scroll Element Into View             ${home.loading_testar_ia}
-    # # Set Focus To Element                 ${home.loading_testar_ia}
-    # # Wait Until Element Is Not Visible    ${home.loading_testar_ia}    150
-    # # Run Keyword And Ignore Error    Element Should Not Be Visible        ${home.loading_testar_ia}
-
-    # # # Validar que a resposta contém o telefone "Teste de Software"
-    # # Sleep    1
-    # # Wait Until Element Is Visible    ${home.resposta_modalidade}    150
-    # # Scroll Element Into View         ${home.resposta_modalidade}    
-    # # Set Focus To Element             ${home.resposta_modalidade}
-    # # ${resposta}    Get Text    ${home.resposta_modalidade}
-    # # Log To Console    >>> RESPOSTA DO AGENTE: ${resposta}
-    # # Should Match Regexp    ${resposta}    .*Teste de Software.*
