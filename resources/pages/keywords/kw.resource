@@ -167,21 +167,21 @@ Então acessar Relatórios Tempo Médio
     Log    Valor capturado: ${tempo}
     Should Match Regexp    ${tempo}    ^\\d{2}:\\d{2}:\\d{2}$
 
-Edição de mensagens em atendimentos
-    # Deverá ter uma mensagem com o texto "Testar edição"
-    Wait Until Element Is Visible    ${home.testar_edição}    60
-    Set Focus To Element             ${home.testar_edição}
-    Click Element                    ${home.testar_edição}
-    Wait Until Element Is Visible    ${home.menu_editar_msgs}    60
-    Set Focus To Element             ${home.menu_editar_msgs}
-    Click Element                    ${home.menu_editar_msgs}
-    Wait Until Element Is Visible    ${home.editar_mensagens}    60
-    Set Focus To Element             ${home.editar_mensagens}
-    Click Element                    ${home.editar_mensagens}
-    Wait Until Element Is Visible    ${home.inserir_msg_edição}    60
-    Set Focus To Element             ${home.inserir_msg_edição}
-    Clear Element Text               ${home.inserir_msg_edição}
-    Input Text                       ${home.inserir_msg_edição}    Mensagem Editada    
+# Edição de mensagens em atendimentos
+#     # Deverá ter uma mensagem com o texto "Testar edição"
+#     Wait Until Element Is Visible    ${home.testar_edição}    60
+#     Set Focus To Element             ${home.testar_edição}
+#     Click Element                    ${home.testar_edição}
+#     Wait Until Element Is Visible    ${home.menu_editar_msgs}    60
+#     Set Focus To Element             ${home.menu_editar_msgs}
+#     Click Element                    ${home.menu_editar_msgs}
+#     Wait Until Element Is Visible    ${home.editar_mensagens}    60
+#     Set Focus To Element             ${home.editar_mensagens}
+#     Click Element                    ${home.editar_mensagens}
+#     Wait Until Element Is Visible    ${home.inserir_msg_edição}    60
+#     Set Focus To Element             ${home.inserir_msg_edição}
+#     Clear Element Text               ${home.inserir_msg_edição}
+#     Input Text                       ${home.inserir_msg_edição}    Mensagem Editada    
 
 Quando acessar o menu Dashboard
     # Validar acesso ao Dashboard
@@ -423,20 +423,6 @@ E acessar o módulo grupo de permissões
     Wait Until Element Is Visible    ${home.grupo_teste_douglas_qa}    60
     Set Focus To Element             ${home.grupo_teste_douglas_qa}
     Log To Console    → Elemento visível com sucesso!
-
-Então selecionar o modal contatos
-    # Clicar em páginas e selecionar o modal "Contatos"
-    Wait Until Element Is Visible    ${home.paginas_permissoes}    60
-    Set Focus To Element             ${home.paginas_permissoes}
-    Click Element                    ${home.paginas_permissoes}     
-    # Clicar caso o modal não esteja selecionado 
-    Wait Until Element Is Visible    ${home.modal_contatos}    60
-    Set Focus To Element             ${home.modal_contatos}
-    Double Click Element             ${home.modal_contatos}  
-    # Clicar em salvar
-    Wait Until Element Is Visible    ${home.btn_salvar_permissoes}    60
-    Set Focus To Element             ${home.btn_salvar_permissoes}
-    Click Element                    ${home.btn_salvar_permissoes}
 
 Então visualizar apenas o modal contatos 
     # Validar que há apenas o menu "Contatos"
