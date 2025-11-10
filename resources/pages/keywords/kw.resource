@@ -1,10 +1,7 @@
 *** Settings ***
 
 Library    SeleniumLibrary
-Library    XML
 Library    String
-Library    random
-Library    Collections
 Resource   ../variables/var.resource
 
 *** Keywords ***
@@ -677,3 +674,77 @@ Então testar o Agente de IA
     ${resposta}    Get Text    ${home.resposta_nome}
     Log To Console    >>> RESPOSTA DO AGENTE: ${resposta}
     Should Match Regexp    ${resposta}    .*Douglas Tavares.*
+
+E acessar à funcionalidade CRM em relatórios
+    # Clicar em CRM
+    Wait Until Element Is Visible    ${home.crm_relatorios}    120
+    Scroll Element Into View         ${home.crm_relatorios}
+    Set Focus To Element             ${home.crm_relatorios}
+    Click Element                    ${home.crm_relatorios}
+    # Validar acesso à página CRM
+    Wait Until Element Is Visible    ${home.page_crm_relatorios}    120
+    Scroll Element Into View         ${home.page_crm_relatorios}
+    Set Focus To Element             ${home.page_crm_relatorios}
+    Element Should Be Visible        ${home.page_crm_relatorios}   
+
+Então validar as colunas 
+    # Validar acesso à coluna oportunidade
+    Wait Until Element Is Visible    ${home.coluna_crm_oportunidade}    120
+    Scroll Element Into View         ${home.coluna_crm_oportunidade}
+    Set Focus To Element             ${home.coluna_crm_oportunidade}
+    Element Should Be Visible        ${home.coluna_crm_oportunidade}
+    Log To Console    >>> Coluna "Oportunidade" visível com sucesso ✅
+    # Validar acesso à coluna contato
+    Wait Until Element Is Visible    ${home.coluna_crm_contato}    120
+    Scroll Element Into View         ${home.coluna_crm_contato}
+    Set Focus To Element             ${home.coluna_crm_contato}
+    Element Should Be Visible        ${home.coluna_crm_contato}
+    Log To Console    >>> Coluna "Contato" visível com sucesso ✅
+    # Validar acesso à coluna conexão
+    Wait Until Element Is Visible    ${home.coluna_crm_conexao}    120
+    Scroll Element Into View         ${home.coluna_crm_conexao}
+    Set Focus To Element             ${home.coluna_crm_conexao}
+    Element Should Be Visible        ${home.coluna_crm_conexao}
+    Log To Console    >>> Coluna "Conexão" visível com sucesso ✅
+    # Validar acesso à coluna usuários
+    Wait Until Element Is Visible    ${home.coluna_crm_usuarios}    120
+    Scroll Element Into View         ${home.coluna_crm_usuarios}
+    Set Focus To Element             ${home.coluna_crm_usuarios}
+    Element Should Be Visible        ${home.coluna_crm_usuarios}
+    Log To Console    >>> Coluna "Usuários" visível com sucesso ✅
+    # Validar acesso à coluna valor
+    Wait Until Element Is Visible    ${home.coluna_crm_valor}    120
+    Scroll Element Into View         ${home.coluna_crm_valor}
+    Set Focus To Element             ${home.coluna_crm_valor}
+    Element Should Be Visible        ${home.coluna_crm_valor}
+    Log To Console    >>> Coluna "Valor" visível com sucesso ✅
+    # Validar acesso à coluna status
+    Wait Until Element Is Visible    ${home.coluna_crm_status}    120
+    Scroll Element Into View         ${home.coluna_crm_status}
+    Set Focus To Element             ${home.coluna_crm_status}
+    Element Should Be Visible        ${home.coluna_crm_status}
+    Log To Console    >>> Coluna "Status" visível com sucesso ✅
+    # Validar acesso à coluna data de criação
+    Wait Until Element Is Visible    ${home.coluna_crm_data_criacao}    120
+    Scroll Element Into View         ${home.coluna_crm_data_criacao}
+    Set Focus To Element             ${home.coluna_crm_data_criacao}
+    Element Should Be Visible        ${home.coluna_crm_data_criacao}
+    Log To Console    >>> Coluna "Data de Criação" visível com sucesso ✅
+    # Validar acesso à coluna data de finalização
+    Wait Until Element Is Visible    ${home.coluna_crm_data_finalizacao}    120
+    Scroll Element Into View         ${home.coluna_crm_data_finalizacao}
+    Set Focus To Element             ${home.coluna_crm_data_finalizacao}
+    Element Should Be Visible        ${home.coluna_crm_data_finalizacao}
+    Log To Console    >>> Coluna "Data de Finalização" visível com sucesso ✅
+    # Validar acesso à coluna origem
+    Wait Until Element Is Visible    ${home.coluna_crm_origem}    120
+    Scroll Element Into View         ${home.coluna_crm_origem}
+    Set Focus To Element             ${home.coluna_crm_origem}
+    Element Should Be Visible        ${home.coluna_crm_origem}
+    Log To Console    >>> Coluna "Origem" visível com sucesso ✅
+    # Validar acesso à coluna título do anúncio
+    Wait Until Element Is Visible    ${home.coluna_crm_titulo_anuncio}    120
+    Scroll Element Into View         ${home.coluna_crm_titulo_anuncio}
+    Set Focus To Element             ${home.coluna_crm_titulo_anuncio}
+    Element Should Be Visible        ${home.coluna_crm_titulo_anuncio}
+    Log To Console    >>> Coluna "Título do anúncio" visível com sucesso ✅

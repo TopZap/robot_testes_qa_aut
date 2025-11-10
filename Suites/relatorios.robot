@@ -7,11 +7,16 @@ Test Teardown     Fechar o Navegador
 
 *** Test Cases ***
 
-TC001 - Validar acessso à Relatórios
+TC001 - Acessar o menu lateral relatórios acessar crm e validar colunas
     [Documentation]    Testa o acesso ao menu "Relatórios"
+    ...                Acessa o campo CRM e validar as colunas:
+    ...                Oportunidade, Contato, Conexão, Usuários, Valor, Status,
+    ...                Data de criação, data de finalização, origem e título do anúncio   
     [Tags]    menu    relatorios
     Dado que esteja logado
     Quando acessar o menu relatórios
+    E acessar à funcionalidade CRM em relatórios
+    Então validar as colunas
 
 TC002 - Validar formato em tempo médio
     [Documentation]    Testa o acesso ao menu "tempo medio"
