@@ -15,29 +15,35 @@ Fechar o Navegador
 
 Dado que esteja logado
     # Inserir usuário
-    Wait Until Element Is Enabled    ${home.username_field}    60
+    Wait Until Element Is Enabled    ${home.username_field}    120
+    Scroll Element Into View         ${home.username_field}
     Set Focus To Element             ${home.username_field}
     Input Text                       ${home.username_field}    ${home.username}
     # Inserir senha
-    Wait Until Element Is Enabled    ${home.password_field}    60
+    Wait Until Element Is Enabled    ${home.password_field}    120
+    Scroll Element Into View         ${home.password_field}
     Set Focus To Element             ${home.password_field}
     Input Text                       ${home.password_field}    ${home.password}
     # Clicar em login
-    Wait Until Element Is Enabled    ${home.login_button}    60
+    Wait Until Element Is Enabled    ${home.login_button}    120
+    Scroll Element Into View         ${home.login_button}
     Set Focus To Element             ${home.login_button}
     Click Element                    ${home.login_button}
 
 Dado que esteja logado Admin
     # Inserir usuário
-    Wait Until Element Is Enabled    ${home.username_field}    60
+    Wait Until Element Is Enabled    ${home.username_field}    120
+    Scroll Element Into View         ${home.username_field}
     Set Focus To Element             ${home.username_field}
     Input Text                       ${home.username_field}    ${home.user_name_admin}
     # Inserir senha
-    Wait Until Element Is Enabled    ${home.password_field}    60
+    Wait Until Element Is Enabled    ${home.password_field}    120
+    Scroll Element Into View         ${home.password_field}
     Set Focus To Element             ${home.password_field}
     Input Text                       ${home.password_field}    ${home.pass_adm}
     # Clicar em login
-    Wait Until Element Is Enabled    ${home.login_button}    60
+    Wait Until Element Is Enabled    ${home.login_button}    120
+    Scroll Element Into View         ${home.login_button}
     Set Focus To Element             ${home.login_button}
     Click Button                     ${home.login_button}
 
@@ -451,6 +457,54 @@ E clicar em adicionar plano
     Wait Until Element Is Visible    ${home.btn_add_plano}    60
     Set Focus To Element             ${home.btn_add_plano}
     Click Element                    ${home.btn_add_plano}
+
+E acessar o menu empresas
+    # validar o acesso ao menu "Empresas"
+    Wait Until Element Is Visible    ${home.menu_empresas}    120
+    Scroll Element Into View         ${home.menu_empresas}
+    Set Focus To Element             ${home.menu_empresas}
+    Click Element                    ${home.menu_empresas}
+    # Validar o acesso à page
+    ${current_url}=    Get Location
+    Should Contain                   ${current_url}    companies
+    Wait Until Element Is Visible    ${home.page_empresas}    120
+    Scroll Element Into View         ${home.page_empresas}
+    Set Focus To Element             ${home.page_empresas}
+    Element Should Be Visible        ${home.page_empresas}
+
+Quando adicionar empresas
+    # Clicar em adicionar empresa
+    Wait Until Element Is Visible    ${home.btn_add_empresas}    120
+    Scroll Element Into View         ${home.btn_add_empresas}
+    Set Focus To Element             ${home.btn_add_empresas}
+    Click Element                    ${home.btn_add_empresas}
+    # Validar acesso à página "Criar Empresa
+    Wait Until Element Is Visible    ${home.page_criar_empresas}    120
+    Scroll Element Into View         ${home.page_criar_empresas}
+    Set Focus To Element             ${home.page_criar_empresas}
+    Element Should Be Visible        ${home.page_criar_empresas}
+
+Então inserir dados da empresa
+    # Inserir país de origem do cnpj
+    Wait Until Element Is Visible    ${home.input_pais_add_empresa}    120
+    Scroll Element Into View         ${home.input_pais_add_empresa}
+    Set Focus To Element             ${home.input_pais_add_empresa}
+    Input Text                       ${home.input_pais_add_empresa}    Brasil
+    Press Keys                       ${home.input_pais_add_empresa}    TAB 
+    # Inserir CNPJ
+    Wait Until Element Is Visible    ${home.input_cnpj_add_empresa}    120
+    Scroll Element Into View         ${home.input_cnpj_add_empresa}
+    Set Focus To Element             ${home.input_cnpj_add_empresa}
+    Input Text                       ${home.input_cnpj_add_empresa}    34571366000132
+    Press Keys                       ${home.input_cnpj_add_empresa}    TAB 
+    # Validar que o CEP "25220-690" da empresa está visível
+    # Único campo que retorna valor para validação
+    Wait Until Element Is Visible        ${home.input_cep_add_empresa}    120
+    Scroll Element Into View             ${home.input_cep_add_empresa}
+    Set Focus To Element                 ${home.input_cep_add_empresa}
+    Element Attribute Value Should Be    ${home.input_cep_add_empresa}    value    25220-690 
+    ${cep}=    Get Element Attribute     ${home.input_cep_add_empresa}    value
+    Log To Console    O número é: ${cep}   
 
 Então criar e validar plano por IA 
     # Acessar Configuração do Plano

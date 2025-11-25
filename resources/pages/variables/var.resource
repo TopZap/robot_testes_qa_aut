@@ -4,11 +4,11 @@ Library    SeleniumLibrary
 *** Variables ***
 &{home}    
 ...    url=https://qa.greenchat.com.br/
-...    user_name_admin=superadmin2@topzap.app
+...    user_name_admin=superadmin@topzap.app
 ...    username_nao_cadastrado=qa@testes.com
 ...    username=datg2702@hotmail.com
 ...    password=1245678
-...    pass_adm=310725
+...    pass_adm=123456
 ...    password_invalido=testandosenhainvalida
 ...    username_field=//input[@id="email"]
 ...    password_field=//input[@id="password"]
@@ -42,8 +42,11 @@ Library    SeleniumLibrary
 ...    atendimento_simples=//p[normalize-space()='Atend. Simples']
 ...    contatos_menu=//section[@class='info']//p[contains(text(),'Contatos')]
 ...    contatos_page=//div[@class='sc-jCWzJg bEYDoX']//p[contains(text(),'Contatos')]
+...    menu_empresas=//button[@data-testid='side-bar-option-Empresas']//section[@class='info']
 ...    menu_campanhas=//button[@data-testid='side-bar-option-Campanhas']//section[@class='info']
 ...    page_campanhas=//div[@class='sc-jCWzJg bEYDoX']//p[contains(text(),'Campanhas')]
+...    page_criar_empresas=//div[@class='sc-hSwHUf dFUGqY']//header[contains(text(),'Criar Empresa')]
+...    page_empresas=//div[@class='sc-jCWzJg bEYDoX']//p[contains(text(),'Empresas')]
 ...    menu_relatorios=//section[@class='info']//p[contains(text(),'Relatórios')]
 ...    page_relatorios=//div[@class='sc-jCWzJg bEYDoX']//p[contains(text(),'Relatórios')] 
 ...    menu_google_agenda=//button[@data-testid='side-bar-option-Google Agenda']//section[@class='info']
@@ -133,3 +136,7 @@ Library    SeleniumLibrary
 ...    coluna_crm_data_finalizacao=//tr[@class='sc-enPhjR hVYlgZ']//th[contains(text(),'DATA DE FINALIZAÇÃO')]
 ...    coluna_crm_origem=//tr[@class='sc-enPhjR hVYlgZ']//th[contains(text(),'ORIGEM')]
 ...    coluna_crm_titulo_anuncio=//tr[@class='sc-enPhjR hVYlgZ']//th[contains(text(),'TITULO DO ANÚNCIO')]
+...    btn_add_empresas=//button[@type='button']//p[contains(text(),'Adicionar empresa')]
+...    input_pais_add_empresa=//input[@id='react-select-2-input']
+...    input_cnpj_add_empresa=//input[@id='cnpj_cpf']
+...    input_cep_add_empresa=//input[@id='neighborhood']
