@@ -213,14 +213,56 @@ E acessar o menu atendimentos
 
 Quando acessar o menu contatos
     # Validar acesso à Contatos
-    Wait Until Element Is Visible    ${home.contatos_menu}    60
+    Wait Until Element Is Visible    ${home.contatos_menu}    120
     Set Focus To Element             ${home.contatos_menu}
     Click Element                    ${home.contatos_menu}
     ${current_url}=    Get Location
     Should Contain                   ${current_url}    contacts    
-    Wait Until Element Is Visible    ${home.contatos_page}    60
+    Wait Until Element Is Visible    ${home.contatos_page}    120
     Set Focus To Element             ${home.contatos_page}
     Element Should Be Visible        ${home.contatos_page}
+
+Então pesquisar contatos
+    # Validar a pesquisa pelo contato "teste pesquisa 1"
+    Wait Until Element Is Visible    ${home.pesquisa_contatos}    120
+    Scroll Element Into View         ${home.pesquisa_contatos}
+    Set Focus To Element             ${home.pesquisa_contatos}
+    Sleep    2
+    Input Text                       ${home.pesquisa_contatos}    teste pesquisa 1
+    ${pesquisa_contato_1}=    Get Value    ${home.pesquisa_contatos}
+    Log                               Pesquisa digitada: "${pesquisa_contato_1}"
+    Log To Console                    Pesquisa digitada: "${pesquisa_contato_1}"
+    Press Keys                       ${home.pesquisa_contatos}    ENTER 
+    # Compara variáveis do contato pesquisado
+    Wait Until Element Is Visible    ${home.contato_teste_pesq_1}    120
+    Scroll Element Into View         ${home.contato_teste_pesq_1}
+    Set Focus To Element             ${home.contato_teste_pesq_1}
+    ${result_pesquisa_contato_1}=    Get Text    ${home.contato_teste_pesq_1}
+    Log                               Pesquisa encontrada: "${result_pesquisa_contato_1}"
+    Log To Console                    Pesquisa encontrada: "${result_pesquisa_contato_1}"
+    Should Contain    ${result_pesquisa_contato_1}    ${pesquisa_contato_1}
+    Capture Page Screenshot
+    # Validar a pesquisa pelo contato "teste pesquisa 1"
+    Wait Until Element Is Visible    ${home.pesquisa_contatos}    120
+    Scroll Element Into View         ${home.pesquisa_contatos}
+    Set Focus To Element             ${home.pesquisa_contatos}
+    Clear Element Text               ${home.pesquisa_contatos}
+    Sleep    2
+    Input Text                       ${home.pesquisa_contatos}    pesquisando contato
+    ${pesquisando_contato}=    Get Value    ${home.pesquisa_contatos}
+    Log                               Pesquisa digitada: "${pesquisando_contato}"
+    Log To Console                    Pesquisa digitada: "${pesquisando_contato}"
+    Press Keys                       ${home.pesquisa_contatos}    ENTER 
+    # Compara variáveis do contato pesquisado
+    Wait Until Element Is Visible    ${home.contato_pesq_contato}    120
+    Scroll Element Into View         ${home.contato_pesq_contato}
+    Set Focus To Element             ${home.contato_pesq_contato}
+    ${result_pesquisando_contato}=    Get Text    ${home.contato_pesq_contato}
+    Log                               Pesquisa encontrada: "${result_pesquisando_contato}"
+    Log To Console                    Pesquisa encontrada: "${result_pesquisando_contato}"
+    # strip para ignorar os espaços e validar apenas o contato pesquisado
+    Should Be Equal As Strings    ${pesquisa_contato_1.strip()}    ${result_pesquisa_contato_1.strip()} 
+    Capture Page Screenshot
 
 Quando acessar o menu campanhas
     # Validar acesso à Campanhas

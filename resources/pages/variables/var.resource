@@ -7,7 +7,7 @@ Library    SeleniumLibrary
 ...    user_name_admin=superadmin@topzap.app
 ...    username_nao_cadastrado=qa@testes.com
 ...    username=datg2702@hotmail.com
-...    password=1245678
+...    password=304521
 ...    pass_adm=123456
 ...    password_invalido=testandosenhainvalida
 ...    username_field=//input[@id="email"]
@@ -140,3 +140,6 @@ Library    SeleniumLibrary
 ...    input_pais_add_empresa=//input[@id='react-select-2-input']
 ...    input_cnpj_add_empresa=//input[@id='cnpj_cpf']
 ...    input_cep_add_empresa=//input[@id='neighborhood']
+...    pesquisa_contatos=//input[@id='contact']
+...    contato_teste_pesq_1=//div[@class="sc-lmccqh gUbPXW"]//div[@class="sc-hHddNj gZtTxB"]//span[contains(text(),'teste pesquisa 1')]
+...    contato_pesq_contato=//div[@class="sc-lmccqh gUbPXW"]//div[@class="sc-hHddNj gZtTxB"]//span[contains(text(),'pesquisando contato')]
